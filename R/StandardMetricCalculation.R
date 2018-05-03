@@ -39,8 +39,6 @@ srdat<-satdat %>%
 # sdat<-gDifference()
 
 ### Process data through ATT
-
-
 data<-srdat
 
 tagdata<- data %>%
@@ -79,7 +77,7 @@ statinfo<- data %>%
             station_longitude = NA, 
             status = NA)
 
-ATTdata<-setupData(tagdata,taginfo,statinfo)
+ATTdata<-setupData(tagdata,taginfo,statinfo, crs=CRS("+init=epsg:4269"))
 
 dispdat<-dispersalSummary(ATTdata)
 
@@ -94,16 +92,23 @@ source("R/displot.R")
 dailydisp %>% group_by(common_name) %>% summarize(n_distinct(Tag.ID))
 displot(data=data.frame(dailydisp), cn="Juvenile White Shark", var="Consecutive.Dispersal")
 
+# write_csv(dispdat, path="DispersalSummary_Rays.csv")
+# write_csv(dailydisp, path="Daily_DispersalSummary_Rays.csv")
 
+#####
 ### Activity space estimation
 COAdata<- data %>% 
-  transmute(Tag.ID = serialNumber, TimeStep.coa = time, Latitude.coa = latitude, Longitude.coa = longitude, Sensor.Value.coa = NA, Sensor.Unit = NA, 
+  transmute(Tag.ID = as.factor(serialNumber), TimeStep.coa = time, Latitude.coa = latitude, Longitude.coa = longitude, Sensor.Value.coa = NA, Sensor.Unit = NA, 
             Number.of.Stations = NA, Number.of.Detections =NA, Sci.Name =NA, Common.Name = commonName, Tag.Project = NA,
             Release.Latitude = NA, Release.Longitude = NA, Release.Date = NA, Tag.Life = NA, Tag.Status = NA, Sex = NA, Bio = NA) %>%
-  structure(., class=c("tbl_df","tbl","data.frame","COA"))
+  structure(., class=c("tbl_df","tbl","data.frame","COA"), CRS=attr(ATTdata, "CRS"))
 
-proj=CRS("+init=epsg:3410")
-hr<-HRSummary(COAdata, projCRS=proj, type="MCP")
+proj=CRS("+init=epsg:3857")
+hr<-HRSummary(COAdata, projCRS=proj, type="MCP", cont=100, storepoly=T)
+hr$Overall<-hr$Overall%>% dplyr::select(Tag.ID, Common.Name, MCP.100)
+hr$Subsetted<-hr$Subsetted%>% dplyr::select(Tag.ID, subset, Common.Name, MCP.100)
 
+saveRDS(hr, file="MCParea_sattelite.rds")
 
-
+write_csv(hr$Overall, path="DispersalSummary_Rays.csv")
+write_csv(dailydisp, path="Daily_DispersalSummary_Rays.csv")
