@@ -2,7 +2,7 @@
 
 displot<-function(data, cn, var="dis", xlab="Maximum dispersal distance (km)", ylab="Relative frequency", 
                   breaks=seq(0,log(10000+1), l=30), mar=c(4,4,1,1), bar.col=NA, bar.border=1,
-                  xlim=log(c(0,5000)+1), lcol=2, dist=c("gamma","kernel","normal"), 
+                  xlim=log(c(0,5000)+1), lcol=2, dist="gamma", 
                   quants=c(0,0.25,0.5,0.75,0.9), ...)
   {
   dat<-subset(data, common_name%in%cn)
@@ -19,7 +19,7 @@ displot<-function(data, cn, var="dis", xlab="Maximum dispersal distance (km)", y
       axis(1, at= log(c(0.01, seq(0.1,1,l=10), seq(1,10,l=10),seq(10,100,l=10), seq(100,1000,l=10), seq(1000,10000,l=10))+1), labels=F, tcl=-0.3)
       axis(1, at= log(c(0.1,1,10,100,1000,10000)+1), labels=c(0.1,1,10,100,1000,10000))
       lines(xfit, yfitn, col=lcol, lwd=2) 
-      out<-data.frame(fit="normal", mean = mean(dat[dat[,var]>0,var]), sd=sd(dat[dat[,var]>0,var]), shape=N, scale=NA, quant=stats::quantile(dat[dat[,var]>0,var], probs=quants))
+      out<-data.frame(fit="normal", mean = mean(dat[dat[,var]>0,var]), sd=sd(dat[dat[,var]>0,var]), shape=NA, scale=NA, quant=stats::quantile(dat[dat[,var]>0,var], probs=quants))
     }
     if(dist=="gamma"){
       # gamma distribution
@@ -39,7 +39,7 @@ displot<-function(data, cn, var="dis", xlab="Maximum dispersal distance (km)", y
       axis(1, at= log(c(0.01, seq(0.1,1,l=10), seq(1,10,l=10),seq(10,100,l=10), seq(100,1000,l=10), seq(1000,10000,l=10))+1), labels=F, tcl=-0.3)
       axis(1, at= log(c(0.1,1,10,100,1000,10000)+1), labels=c(0.1,1,10,100,1000,10000))
       lines(xfit, yfitk, col=lcol, lwd=2)
-      out<-data.frame(fit="normal", mean = mean(dat[dat[,var]>0,var]), sd=sd(dat[dat[,var]>0,var]), shape=N, scale=NA, quant=stats::quantile(dat[dat[,var]>0,var], probs=quants))
+      out<-data.frame(fit="kernel", mean = mean(dat[dat[,var]>0,var]), sd=sd(dat[dat[,var]>0,var]), shape=NA, scale=NA, quant=stats::quantile(dat[dat[,var]>0,var], probs=quants))
     }
     box(bty="l")
     legend('topright', bty="n", pch=NA, col=NA, legend=cn, text.font=2, cex=1.2)

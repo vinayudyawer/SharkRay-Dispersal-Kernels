@@ -5,8 +5,9 @@ library(ATT)
 library(tidyverse)
 library(lubridate)
 library(data.table)
-library(maps)
+library(rgeos)
 library(raster)
+# library(maps); library(mapdata)
 
 satdat<-fread("Data/Satellite data/2018-05-03_ATN_satData.csv")
 
@@ -23,23 +24,24 @@ satdat <- as_tibble(satdat) %>%
 ## B: unbounded accuracy, only 1 or 2 messages received by satellite
 satdat<- filter(satdat, LC %in% c(2,3)) ## only retain class 2 and 3 
 
-shark<-c("Basking Shark","Blue Shark","Common Thresher Shark","Galapagos Shark",
+sharkray<-c("Basking Shark","Blue Shark","Common Thresher Shark","Galapagos Shark",
          "Greenland Shark","Grey Reef Shark", "Juvenile White Shark", "Oceanic Whitetip Shark",
          "Porbeagle Shark", "Salmon Shark", "Sandtiger Shark", "Shortfin Mako Shark", "Silky Shark",
-         "Silvertip Shark", "Smooth Hammerhead", "Tiger Shark", "Whale Shark", "White Shark")
+         "Silvertip Shark", "Smooth Hammerhead", "Tiger Shark", "Whale Shark", "White Shark","Devil Ray", "Manta Ray")
 
-ray<-c("Devil Ray", "Manta Ray")
+srdat<-satdat %>%
+  filter(commonName %in% sharkray)
 
-satshark<-filter(satdat, commonName %in% shark)
-satray<-filter(satdat, commonName %in% ray)
 
-# coordinates(satdat)<-c("longitude","latitude")
-# projection(satdat)<-CRS("+init=epsg:4326")
-# plot(satdat); map(add=T)
+# coordinates(srdat)<-c("longitude","latitude")
+# projection(srdat)<-CRS("+init=epsg:4326")
+# quartz(width=9, height=6); plot(srdat, cex=0.1); 
+# sdat<-gDifference()
 
 ### Process data through ATT
-n<-names(table(satshark$commonName)) #c(1,5,8,9,10,)
-data<-filter(satshark, commonName %in% n[11])
+
+
+data<-srdat
 
 tagdata<- data %>%
   transmute(detection_timestamp = time,
@@ -53,9 +55,9 @@ tagdata<- data %>%
             sensor_unit = NA)
 
 taginfo<- data %>%
-  transmute(tag_id = serialNumber,
-            scientific_name = NA,
-            common_name = commonName, 
+  group_by(serialNumber) %>%
+  summarize(scientific_name = NA,
+            common_name = first(commonName), 
             tag_project_name = NA, 
             release_latitude = NA, 
             release_longitude = NA, 
@@ -63,7 +65,8 @@ taginfo<- data %>%
             tag_expected_life_time_days = NA, 
             tag_status = NA, 
             sex = NA,
-            measurement = NA)
+            measurement = NA) %>%
+  rename(tag_id = serialNumber)
 
 statinfo<- data %>%
   transmute(station_name = NA, 
@@ -88,8 +91,8 @@ dailydisp<- dispdat %>%
             Consecutive.Dispersal = sum(Consecutive.Dispersal, na.rm=T))
 
 source("R/displot.R")
-
-displot(data=data.frame(dailydisp), cn="Manta Ray", var="Consecutive.Dispersal")
+dailydisp %>% group_by(common_name) %>% summarize(n_distinct(Tag.ID))
+displot(data=data.frame(dailydisp), cn="Juvenile White Shark", var="Consecutive.Dispersal")
 
 
 ### Activity space estimation
