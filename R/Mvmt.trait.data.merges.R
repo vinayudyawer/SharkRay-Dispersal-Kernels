@@ -1,8 +1,11 @@
-#merge datasets for analysis
+####################################
+#MERGING RAW DATA SETS FOR ANALYSIS#
+####################################
 
-#imos data is already loaded
+#Merging IMOS data and trait data
+imos <- read.csv("Data/Acoustic data/IMOS/ATToutput/", header=T)
 #merge with life 
- lh.data <- read.csv("Data/610.lh.data.csv", header = T)
+trait <- read.csv("Data/610.lh.data.csv", header = T)
 
 imos$G.species <- gsub(" ", "_", imos$scientific_name) 
  
