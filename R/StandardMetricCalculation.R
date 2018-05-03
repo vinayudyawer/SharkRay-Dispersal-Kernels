@@ -83,6 +83,7 @@ dispdat<-dispersalSummary(ATTdata)
 dispdat$Velocity<-dispdat$Consecutive.Dispersal/dispdat$Time.Since.Last.Detection
 
 dailydisp<- dispdat %>%
+  filter(Consecutive.Dispersal > 0) %>%
   mutate(date=date(Date.Time)) %>%
   group_by(date, Tag.ID) %>%
   summarize(Transmitter.Name = first(Transmitter.Name),
@@ -92,10 +93,10 @@ dailydisp<- dispdat %>%
 
 source("R/displot.R")
 dailydisp %>% group_by(common_name) %>% summarize(n_distinct(Tag.ID))
-displot(data=data.frame(dailydisp), cn="Juvenile White Shark", var="Consecutive.Dispersal")
+displot(data=data.frame(dailydisp), cn="White Shark", var="Daily.Dispersal", dist="kernel")
 
-# write_csv(dispdat, path="DispersalSummary_Rays.csv")
-# write_csv(dailydisp, path="Daily_DispersalSummary_Rays.csv")
+write_csv(dispdat, path="DispersalSummary_Rays.csv")
+write_csv(dailydisp, path="Daily_DispersalSummary_Rays.csv")
 
 #####
 ### Activity space estimation
