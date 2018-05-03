@@ -80,13 +80,15 @@ statinfo<- data %>%
 ATTdata<-setupData(tagdata,taginfo,statinfo, crs=CRS("+init=epsg:4269"))
 
 dispdat<-dispersalSummary(ATTdata)
+dispdat$Velocity<-dispdat$Consecutive.Dispersal/dispdat$Time.Since.Last.Detection
 
 dailydisp<- dispdat %>%
   mutate(date=date(Date.Time)) %>%
   group_by(date, Tag.ID) %>%
   summarize(Transmitter.Name = first(Transmitter.Name),
             common_name = first(Common.Name),
-            Consecutive.Dispersal = sum(Consecutive.Dispersal, na.rm=T))
+            Daily.Dispersal = sum(Consecutive.Dispersal, na.rm=T),
+            mean.Daily.Velocity = mean(Velocity, na.rm=T))
 
 source("R/displot.R")
 dailydisp %>% group_by(common_name) %>% summarize(n_distinct(Tag.ID))
