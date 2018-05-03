@@ -1,0 +1,345 @@
+animal_project_reference,datacenter_reference,animal_reference_id,animal_guid,vernacularname,scientificname,taxonrank,aphiaid,tsn,animal_origin,stock,length,length_type,weight,life_stage,age,sex
+,,,,,,,,,,,,,,,,
+FRO,OTN-Global,FRO-T14,OTN-GlobalFROFRO-T14,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.561,FORK,2.35,,NaN,U
+FRO,OTN-Global,FRO-T2,OTN-GlobalFROFRO-T2,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.576,FORK,2.53,,NaN,U
+FRO,OTN-Global,FRO-T25,OTN-GlobalFROFRO-T25,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.57,FORK,2.41,,NaN,U
+FRO,OTN-Global,FRO-T26,OTN-GlobalFROFRO-T26,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.6,FORK,2.8,,NaN,U
+FRO,OTN-Global,FRO-T27,OTN-GlobalFROFRO-T27,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.55,FORK,2.17,,NaN,U
+FRO,OTN-Global,FRO-T28,OTN-GlobalFROFRO-T28,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.49,FORK,1.55,,NaN,U
+FRO,OTN-Global,FRO-T29,OTN-GlobalFROFRO-T29,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.45,FORK,1.24,,NaN,U
+FRO,OTN-Global,FRO-T5,OTN-GlobalFROFRO-T5,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.521,FORK,1.89,,NaN,U
+FRO,OTN-Global,FRO-T1,OTN-GlobalFROFRO-T1,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.556,FORK,2.29,,NaN,U
+FRO,OTN-Global,FRO-T41,OTN-GlobalFROFRO-T41,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.54,FORK,2.15,,NaN,U
+FRO,OTN-Global,FRO-T8,OTN-GlobalFROFRO-T8,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.588,FORK,2.69,,NaN,U
+FRO,OTN-Global,FRO-T7,OTN-GlobalFROFRO-T7,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.64,FORK,3.44,,NaN,U
+FRO,OTN-Global,FRO-T4,OTN-GlobalFROFRO-T4,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.54,FORK,2.1,,NaN,U
+FRO,OTN-Global,FRO-T6,OTN-GlobalFROFRO-T6,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.612,FORK,3.02,,NaN,U
+FRO,OTN-Global,FRO-T9,OTN-GlobalFROFRO-T9,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.6,FORK,2.85,,NaN,U
+FRO,OTN-Global,FRO-T10,OTN-GlobalFROFRO-T10,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.544,FORK,2.15,,NaN,U
+FRO,OTN-Global,FRO-T13,OTN-GlobalFROFRO-T13,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.586,FORK,2.66,,NaN,U
+FRO,OTN-Global,FRO-T11,OTN-GlobalFROFRO-T11,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.596,FORK,2.8,,NaN,U
+FRO,OTN-Global,FRO-T12,OTN-GlobalFROFRO-T12,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.54,FORK,2.1,,NaN,U
+FRO,OTN-Global,FRO-T33,OTN-GlobalFROFRO-T33,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.53,FORK,1.97,,NaN,U
+FRO,OTN-Global,FRO-T31,OTN-GlobalFROFRO-T31,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.53,FORK,1.99,,NaN,U
+FRO,OTN-Global,FRO-T32,OTN-GlobalFROFRO-T32,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.57,FORK,2.41,,NaN,U
+FRO,OTN-Global,FRO-T16,OTN-GlobalFROFRO-T16,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.554,FORK,2.26,,NaN,U
+FRO,OTN-Global,FRO-T35,OTN-GlobalFROFRO-T35,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.31,FORK,0.4,,NaN,U
+FRO,OTN-Global,FRO-T30,OTN-GlobalFROFRO-T30,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.36,FORK,0.66,,NaN,U
+FRO,OTN-Global,FRO-T34,OTN-GlobalFROFRO-T34,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.33,FORK,0.5,,NaN,U
+FRO,OTN-Global,FRO-T37,OTN-GlobalFROFRO-T37,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.31,FORK,0.43,,NaN,U
+FRO,OTN-Global,FRO-T36,OTN-GlobalFROFRO-T36,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.32,FORK,0.46,,NaN,U
+FRO,OTN-Global,FRO-T18,OTN-GlobalFROFRO-T18,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.519,FORK,1.87,,NaN,U
+FRO,OTN-Global,FRO-T17,OTN-GlobalFROFRO-T17,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.556,FORK,2.29,,NaN,U
+FRO,OTN-Global,FRO-T19,OTN-GlobalFROFRO-T19,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.634,FORK,3.34,,NaN,U
+FRO,OTN-Global,FRO-T20,OTN-GlobalFROFRO-T20,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.585,FORK,2.65,,NaN,U
+FRO,OTN-Global,FRO-T15,OTN-GlobalFROFRO-T15,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.569,FORK,2.44,,NaN,U
+FRO,OTN-Global,FRO-T24,OTN-GlobalFROFRO-T24,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.57,FORK,2.48,,NaN,U
+FRO,OTN-Global,FRO-T22,OTN-GlobalFROFRO-T22,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.646,FORK,3.53,,NaN,U
+FRO,OTN-Global,FRO-T21,OTN-GlobalFROFRO-T21,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.61,FORK,2.99,,NaN,U
+FRO,OTN-Global,FRO-T23,OTN-GlobalFROFRO-T23,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.58,FORK,2.58,,NaN,U
+FRO,OTN-Global,FRO-T42,OTN-GlobalFROFRO-T42,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.6,FORK,1.91,,NaN,U
+FRO,OTN-Global,FRO-T43,OTN-GlobalFROFRO-T43,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.278,FORK,0.12,,NaN,U
+FRO,OTN-Global,FRO-T44,OTN-GlobalFROFRO-T44,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.492,FORK,1.0,,NaN,U
+FRO,OTN-Global,FRO-T45,OTN-GlobalFROFRO-T45,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.329,FORK,0.31,,NaN,U
+FRO,OTN-Global,FRO-T46,OTN-GlobalFROFRO-T46,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.714,FORK,3.82,,NaN,U
+FRO,OTN-Global,FRO-T47,OTN-GlobalFROFRO-T47,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.6,FORK,2.2,,NaN,U
+FRO,OTN-Global,FRO-T48,OTN-GlobalFROFRO-T48,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.567,FORK,1.84,,NaN,U
+FRO,OTN-Global,FRO-T49,OTN-GlobalFROFRO-T49,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.619,FORK,2.43,,NaN,U
+FRO,OTN-Global,FRO-T50,OTN-GlobalFROFRO-T50,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.534,FORK,1.52,,NaN,U
+FRO,OTN-Global,FRO-T51,OTN-GlobalFROFRO-T51,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.616,FORK,2.39,,NaN,U
+FRO,OTN-Global,FRO-T52,OTN-GlobalFROFRO-T52,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.618,FORK,2.42,,NaN,U
+FRO,OTN-Global,FRO-T53,OTN-GlobalFROFRO-T53,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.566,FORK,1.83,,NaN,U
+FRO,OTN-Global,FRO-T54,OTN-GlobalFROFRO-T54,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.507,FORK,1.29,,NaN,U
+FRO,OTN-Global,FRO-T55,OTN-GlobalFROFRO-T55,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.579,FORK,1.96,,NaN,U
+FRO,OTN-Global,FRO-T56,OTN-GlobalFROFRO-T56,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.525,FORK,1.44,,NaN,U
+FRO,OTN-Global,FRO-T57,OTN-GlobalFROFRO-T57,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.32,FORK,0.3,,NaN,U
+FRO,OTN-Global,FRO-T58,OTN-GlobalFROFRO-T58,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.509,FORK,1.31,,NaN,U
+FRO,OTN-Global,FRO-T59,OTN-GlobalFROFRO-T59,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.37,FORK,0.47,,NaN,U
+FRO,OTN-Global,FRO-T60,OTN-GlobalFROFRO-T60,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.545,FORK,1.62,,NaN,U
+FRO,OTN-Global,FRO-T61,OTN-GlobalFROFRO-T61,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.533,FORK,1.3,,NaN,U
+FRO,OTN-Global,FRO-T39,OTN-GlobalFROFRO-T39,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.62,FORK,3.08,,NaN,U
+FRO,OTN-Global,FRO-T38,OTN-GlobalFROFRO-T38,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.53,FORK,1.99,,NaN,U
+FRO,OTN-Global,FRO-T3,OTN-GlobalFROFRO-T3,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.594,FORK,2.77,,NaN,U
+FRO,OTN-Global,FRO-T40,OTN-GlobalFROFRO-T40,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.54,FORK,2.08,,NaN,U
+MCS,OTN-Global,MCS-50934,OTN-GlobalMCSMCS-50934,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.64,FORK,NaN,ADULT,NaN,F
+MCS,OTN-Global,MCS-50935,OTN-GlobalMCSMCS-50935,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.7,FORK,NaN,ADULT,NaN,F
+MCS,OTN-Global,MCS-50945,OTN-GlobalMCSMCS-50945,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.655,FORK,NaN,ADULT,NaN,F
+MCS,OTN-Global,MCS-50946,OTN-GlobalMCSMCS-50946,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.795,FORK,NaN,ADULT,NaN,F
+MCS,OTN-Global,MCS-50928,OTN-GlobalMCSMCS-50928,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.785,FORK,NaN,ADULT,NaN,M
+MCS,OTN-Global,MCS-50929,OTN-GlobalMCSMCS-50929,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.88,FORK,NaN,ADULT,NaN,M
+MCS,OTN-Global,MCS-50931,OTN-GlobalMCSMCS-50931,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.8,FORK,NaN,ADULT,NaN,M
+MCS,OTN-Global,MCS-50932,OTN-GlobalMCSMCS-50932,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.765,FORK,NaN,ADULT,NaN,M
+MCS,OTN-Global,MCS-50933,OTN-GlobalMCSMCS-50933,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.8,FORK,NaN,ADULT,NaN,M
+MCS,OTN-Global,MCS-16265,OTN-GlobalMCSMCS-16265,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.78,FORK,NaN,ADULT,NaN,M
+MCS,OTN-Global,MCS-16268,OTN-GlobalMCSMCS-16268,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.76,FORK,NaN,ADULT,NaN,M
+MCS,OTN-Global,MCS-50937,OTN-GlobalMCSMCS-50937,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.71,FORK,NaN,ADULT,NaN,F
+MCS,OTN-Global,MCS-50938,OTN-GlobalMCSMCS-50938,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.72,FORK,NaN,ADULT,NaN,F
+MCS,OTN-Global,MCS-50939,OTN-GlobalMCSMCS-50939,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.72,FORK,NaN,ADULT,NaN,F
+MCS,OTN-Global,MCS-50940,OTN-GlobalMCSMCS-50940,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.72,FORK,NaN,ADULT,NaN,F
+MCS,OTN-Global,MCS-50941,OTN-GlobalMCSMCS-50941,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.72,FORK,NaN,ADULT,NaN,F
+MCS,OTN-Global,MCS-50936,OTN-GlobalMCSMCS-50936,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.685,FORK,NaN,ADULT,NaN,F
+MCS,OTN-Global,MCS-50942,OTN-GlobalMCSMCS-50942,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.825,FORK,NaN,ADULT,NaN,F
+MCS,OTN-Global,MCS-50943,OTN-GlobalMCSMCS-50943,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.735,FORK,NaN,ADULT,NaN,F
+MCS,OTN-Global,MCS-50944,OTN-GlobalMCSMCS-50944,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.64,FORK,NaN,ADULT,NaN,F
+MCS,OTN-Global,MCS-50947,OTN-GlobalMCSMCS-50947,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.72,FORK,NaN,ADULT,NaN,F
+MCS,OTN-Global,MCS-50948,OTN-GlobalMCSMCS-50948,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.78,FORK,NaN,ADULT,NaN,F
+MCS,OTN-Global,MCS-50949,OTN-GlobalMCSMCS-50949,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.75,FORK,NaN,ADULT,NaN,F
+MCS,OTN-Global,MCS-50950,OTN-GlobalMCSMCS-50950,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.76,FORK,NaN,ADULT,NaN,F
+MCS,OTN-Global,MCS-50951,OTN-GlobalMCSMCS-50951,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.825,FORK,NaN,ADULT,NaN,F
+MCS,OTN-Global,MCS-50953,OTN-GlobalMCSMCS-50953,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.725,FORK,NaN,ADULT,NaN,F
+MCS,OTN-Global,MCS-50954,OTN-GlobalMCSMCS-50954,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.69,FORK,NaN,ADULT,NaN,F
+MCS,OTN-Global,MCS-50925,OTN-GlobalMCSMCS-50925,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.79,FORK,NaN,ADULT,NaN,M
+MCS,OTN-Global,MCS-50926,OTN-GlobalMCSMCS-50926,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.84,FORK,NaN,ADULT,NaN,M
+MCS,OTN-Global,MCS-50927,OTN-GlobalMCSMCS-50927,Atlantic salmon,Salmo salar,,127186,161996,H,EAST MACHIAS,0.8,FORK,NaN,ADULT,NaN,M
+NSBS,OTN-Global,NSBS-ALI,OTN-GlobalNSBSNSBS-ALI,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.5748,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Eva,OTN-GlobalNSBSNSBS-Eva,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.6,FORK,32.65,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Percy,OTN-GlobalNSBSNSBS-Percy,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.38,FORK,19.5,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Riley,OTN-GlobalNSBSNSBS-Riley,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.58,FORK,29.71,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Meeko,OTN-GlobalNSBSNSBS-Meeko,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.3,FORK,16.85,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Sophie,OTN-GlobalNSBSNSBS-Sophie,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.53,FORK,25.29,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Brandy,OTN-GlobalNSBSNSBS-Brandy,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.4,FORK,22.81,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Lucy,OTN-GlobalNSBSNSBS-Lucy,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.62,FORK,27.6,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Xena,OTN-GlobalNSBSNSBS-Xena,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.64,FORK,40.46,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Leia,OTN-GlobalNSBSNSBS-Leia,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.37,FORK,21.0,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Hayley,OTN-GlobalNSBSNSBS-Hayley,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.51,FORK,25.0,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Blueberry,OTN-GlobalNSBSNSBS-Blueberry,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.52,FORK,25.12,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Finnigan,OTN-GlobalNSBSNSBS-Finnigan,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.43,FORK,21.9,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Wryley,OTN-GlobalNSBSNSBS-Wryley,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.16,FORK,7.57,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Brianna,OTN-GlobalNSBSNSBS-Brianna,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.41,FORK,21.59,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Tika,OTN-GlobalNSBSNSBS-Tika,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.52,FORK,25.12,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Janina,OTN-GlobalNSBSNSBS-Janina,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.49,FORK,25.09,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Lola,OTN-GlobalNSBSNSBS-Lola,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.39,FORK,18.14,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Alyssa,OTN-GlobalNSBSNSBS-Alyssa,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.56,FORK,27.71,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Ophelia,OTN-GlobalNSBSNSBS-Ophelia,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.29,FORK,10.52,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Skylar,OTN-GlobalNSBSNSBS-Skylar,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.62,FORK,30.88,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Blue Rodeo (Rick Mercer),OTN-GlobalNSBSNSBS-Blue Rodeo (Rick Mercer),blue shark,Prionace glauca,,105801,160424,W,,1.35,FORK,12.0,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Keesh,OTN-GlobalNSBSNSBS-Keesh,blue shark,Prionace glauca,,105801,160424,W,,1.35,FORK,15.0,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Tiny Turner,OTN-GlobalNSBSNSBS-Tiny Turner,blue shark,Prionace glauca,,105801,160424,W,,1.07,FORK,6.0,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Tail Slap,OTN-GlobalNSBSNSBS-Tail Slap,blue shark,Prionace glauca,,105801,160424,W,,1.47,FORK,18.0,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Hey Jude,OTN-GlobalNSBSNSBS-Hey Jude,blue shark,Prionace glauca,,105801,160424,W,,1.55,FORK,28.0,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Suzy Q,OTN-GlobalNSBSNSBS-Suzy Q,blue shark,Prionace glauca,,105801,160424,W,,1.55,FORK,22.0,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Betty,OTN-GlobalNSBSNSBS-Betty,blue shark,Prionace glauca,,105801,160424,W,,1.36,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Bonkers,OTN-GlobalNSBSNSBS-Bonkers,blue shark,Prionace glauca,,105801,160424,W,,1.28,FORK,11.0,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Brendal,OTN-GlobalNSBSNSBS-Brendal,blue shark,Prionace glauca,,105801,160424,W,,1.65,FORK,27.0,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Lucy-14,OTN-GlobalNSBSNSBS-Lucy-14,blue shark,Prionace glauca,,105801,160424,W,,1.52,FORK,15.0,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Finnigan-14,OTN-GlobalNSBSNSBS-Finnigan-14,blue shark,Prionace glauca,,105801,160424,W,,1.03,FORK,6.0,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Big Momma,OTN-GlobalNSBSNSBS-Big Momma,blue shark,Prionace glauca,,105801,160424,W,,1.65,FORK,26.0,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Calypso,OTN-GlobalNSBSNSBS-Calypso,blue shark,Prionace glauca,,105801,160424,W,,1.31,FORK,15.0,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Katelyn,OTN-GlobalNSBSNSBS-Katelyn,blue shark,Prionace glauca,,105801,160424,W,,1.31,FORK,9.0,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Hooker,OTN-GlobalNSBSNSBS-Hooker,blue shark,Prionace glauca,,105801,160424,W,,1.47,FORK,20.0,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Casey,OTN-GlobalNSBSNSBS-Casey,blue shark,Prionace glauca,,105801,160424,W,,1.42,FORK,19.0,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Helga,OTN-GlobalNSBSNSBS-Helga,blue shark,Prionace glauca,,105801,160424,W,,1.63,FORK,28.0,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Nikki,OTN-GlobalNSBSNSBS-Nikki,blue shark,Prionace glauca,,105801,160424,W,,1.31,FORK,12.0,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Alison,OTN-GlobalNSBSNSBS-Alison,blue shark,Prionace glauca,,105801,160424,W,,1.41,FORK,20.0,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-LILY,OTN-GlobalNSBSNSBS-LILY,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.5493999999999999,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-MATTEA,OTN-GlobalNSBSNSBS-MATTEA,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.0541,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-ALICE,OTN-GlobalNSBSNSBS-ALICE,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.4097,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-PEYTON,OTN-GlobalNSBSNSBS-PEYTON,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.524,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-KRISTINA,OTN-GlobalNSBSNSBS-KRISTINA,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.4351,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-GRIFFIN,OTN-GlobalNSBSNSBS-GRIFFIN,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.5875,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-TRACEY,OTN-GlobalNSBSNSBS-TRACEY,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.1049,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-HUGH,OTN-GlobalNSBSNSBS-HUGH,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.68275,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-SARAH,OTN-GlobalNSBSNSBS-SARAH,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.09982,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-LORENZA,OTN-GlobalNSBSNSBS-LORENZA,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.5367000000000002,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-NICOLE,OTN-GlobalNSBSNSBS-NICOLE,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.8542,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-TINI,OTN-GlobalNSBSNSBS-TINI,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.651,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-CAROLINA,OTN-GlobalNSBSNSBS-CAROLINA,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.6256,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-NAKIA,OTN-GlobalNSBSNSBS-NAKIA,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.7018,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-SWAANTJE,OTN-GlobalNSBSNSBS-SWAANTJE,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.3589000000000002,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Salty Dog,OTN-GlobalNSBSNSBS-Salty Dog,blue shark,Prionace glauca,,105801,160424,W,,1.52,FORK,20.0,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-ELVIRE,OTN-GlobalNSBSNSBS-ELVIRE,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.4097,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-MOFFAT,OTN-GlobalNSBSNSBS-MOFFAT,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.6383,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-110451,OTN-GlobalNSBSNSBS-110451,blue shark,Prionace glauca,,105801,160424,W,,1.5367,FORK,NaN,SUB-ADULT,NaN,F
+NSBS,OTN-Global,NSBS-110448,OTN-GlobalNSBSNSBS-110448,blue shark,Prionace glauca,,105801,160424,W,,1.6891,FORK,NaN,SUB-ADULT,NaN,F
+NSBS,OTN-Global,NSBS-1248833,OTN-GlobalNSBSNSBS-1248833,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.461,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-1248824,OTN-GlobalNSBSNSBS-1248824,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.549,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-1248832,OTN-GlobalNSBSNSBS-1248832,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.727,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-1248830,OTN-GlobalNSBSNSBS-1248830,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.524,FORK,NaN,JUVENILE,NaN,F
+NSBS,OTN-Global,NSBS-Hops,OTN-GlobalNSBSNSBS-Hops,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.27,FORK,NaN,JUVENILE,NaN,M
+NSBS,OTN-Global,NSBS-Spruce,OTN-GlobalNSBSNSBS-Spruce,blue shark,Prionace glauca,,105801,160424,W,NW Atlantic,1.32,FORK,NaN,JUVENILE,NaN,F
+WRS,OTN-Global,WRS-1073397,OTN-GlobalWRSWRS-1073397,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.204,FORK,0.09,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073398,OTN-GlobalWRSWRS-1073398,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.214,FORK,0.083,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073399,OTN-GlobalWRSWRS-1073399,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.211,FORK,0.081,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073400,OTN-GlobalWRSWRS-1073400,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.186,FORK,0.066,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073401,OTN-GlobalWRSWRS-1073401,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.188,FORK,0.075,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073402,OTN-GlobalWRSWRS-1073402,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.181,FORK,0.057,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073403,OTN-GlobalWRSWRS-1073403,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.188,FORK,0.059,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073404,OTN-GlobalWRSWRS-1073404,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.193,FORK,0.076,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073405,OTN-GlobalWRSWRS-1073405,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.216,FORK,0.102,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073406,OTN-GlobalWRSWRS-1073406,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.202,FORK,0.08,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073407,OTN-GlobalWRSWRS-1073407,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.185,FORK,0.059,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073408,OTN-GlobalWRSWRS-1073408,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.185,FORK,0.054,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073409,OTN-GlobalWRSWRS-1073409,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.192,FORK,0.072,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073410,OTN-GlobalWRSWRS-1073410,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.2,FORK,0.069,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073411,OTN-GlobalWRSWRS-1073411,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.185,FORK,0.062,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073412,OTN-GlobalWRSWRS-1073412,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.181,FORK,0.058,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073413,OTN-GlobalWRSWRS-1073413,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.192,FORK,0.075,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073414,OTN-GlobalWRSWRS-1073414,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.185,FORK,0.06,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073415,OTN-GlobalWRSWRS-1073415,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.188,FORK,0.061,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073416,OTN-GlobalWRSWRS-1073416,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.2,FORK,0.079,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073417,OTN-GlobalWRSWRS-1073417,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.179,FORK,0.055,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073418,OTN-GlobalWRSWRS-1073418,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.182,FORK,0.059,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073419,OTN-GlobalWRSWRS-1073419,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.179,FORK,0.059,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073420,OTN-GlobalWRSWRS-1073420,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.189,FORK,0.07,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073421,OTN-GlobalWRSWRS-1073421,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.182,FORK,0.054,SMOLT,NaN,
+WRS,OTN-Global,WRS-1073422,OTN-GlobalWRSWRS-1073422,Atlantic salmon,Salmo salar,,127186,161996,W,"West River, Sheet Harbour",0.19,FORK,0.061,SMOLT,NaN,
+WRS,OTN-Global,WRS-29637,OTN-GlobalWRSWRS-29637,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.199,FORK,0.078,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29638,OTN-GlobalWRSWRS-29638,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.212,FORK,0.096,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29639,OTN-GlobalWRSWRS-29639,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.236,FORK,0.112,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29640,OTN-GlobalWRSWRS-29640,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.204,FORK,0.092,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29641,OTN-GlobalWRSWRS-29641,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.184,FORK,0.056,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29642,OTN-GlobalWRSWRS-29642,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.23,FORK,0.11,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29643,OTN-GlobalWRSWRS-29643,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.176,FORK,0.048,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29644,OTN-GlobalWRSWRS-29644,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.219,FORK,0.096,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29645,OTN-GlobalWRSWRS-29645,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.205,FORK,0.086,JUVENILE,NaN,
+WRS,OTN-Global,WRS-10550,OTN-GlobalWRSWRS-10550,Atlantic salmon,Salmo salar,,127186,161996,W,WRSH,0.222,FORK,NaN,,NaN,
+WRS,OTN-Global,WRS-10551,OTN-GlobalWRSWRS-10551,Atlantic salmon,Salmo salar,,127186,161996,W,WRSH,0.196,FORK,NaN,,NaN,
+WRS,OTN-Global,WRS-10552,OTN-GlobalWRSWRS-10552,Atlantic salmon,Salmo salar,,127186,161996,W,WRSH,0.194,FORK,NaN,,NaN,
+WRS,OTN-Global,WRS-10553,OTN-GlobalWRSWRS-10553,Atlantic salmon,Salmo salar,,127186,161996,W,WRSH,0.186,FORK,NaN,,NaN,
+WRS,OTN-Global,WRS-10554,OTN-GlobalWRSWRS-10554,Atlantic salmon,Salmo salar,,127186,161996,W,WRSH,0.205,FORK,NaN,,NaN,
+WRS,OTN-Global,WRS-10555,OTN-GlobalWRSWRS-10555,Atlantic salmon,Salmo salar,,127186,161996,W,WRSH,0.218,FORK,NaN,,NaN,
+WRS,OTN-Global,WRS-37040,OTN-GlobalWRSWRS-37040,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.172,FORK,0.044,JUVENILE,NaN,
+WRS,OTN-Global,WRS-37041,OTN-GlobalWRSWRS-37041,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.168,FORK,0.036,JUVENILE,NaN,
+WRS,OTN-Global,WRS-37042,OTN-GlobalWRSWRS-37042,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.155,FORK,0.032,JUVENILE,NaN,
+WRS,OTN-Global,WRS-37043,OTN-GlobalWRSWRS-37043,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.165,FORK,0.042,JUVENILE,NaN,
+WRS,OTN-Global,WRS-37044,OTN-GlobalWRSWRS-37044,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.16,FORK,0.036,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29646,OTN-GlobalWRSWRS-29646,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.174,FORK,0.05,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29647,OTN-GlobalWRSWRS-29647,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.19,FORK,0.066,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29648,OTN-GlobalWRSWRS-29648,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.203,FORK,0.076,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29649,OTN-GlobalWRSWRS-29649,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.174,FORK,0.052,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29650,OTN-GlobalWRSWRS-29650,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.178,FORK,0.058,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29651,OTN-GlobalWRSWRS-29651,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.186,FORK,0.06,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29652,OTN-GlobalWRSWRS-29652,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.192,FORK,0.072,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29653,OTN-GlobalWRSWRS-29653,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.184,FORK,0.058,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29654,OTN-GlobalWRSWRS-29654,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.197,FORK,0.066,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29655,OTN-GlobalWRSWRS-29655,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.206,FORK,0.088,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29656,OTN-GlobalWRSWRS-29656,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.192,FORK,0.06,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29657,OTN-GlobalWRSWRS-29657,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.211,FORK,0.1,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29659,OTN-GlobalWRSWRS-29659,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.179,FORK,0.052,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29660,OTN-GlobalWRSWRS-29660,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.198,FORK,0.078,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29661,OTN-GlobalWRSWRS-29661,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.195,FORK,0.078,JUVENILE,NaN,
+WRS,OTN-Global,WRS-29662,OTN-GlobalWRSWRS-29662,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.237,FORK,0.108,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36701,OTN-GlobalWRSWRS-36701,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.203,FORK,0.08,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36702,OTN-GlobalWRSWRS-36702,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.179,FORK,0.06,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36703,OTN-GlobalWRSWRS-36703,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.215,FORK,0.092,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36704,OTN-GlobalWRSWRS-36704,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.178,FORK,0.05,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36705,OTN-GlobalWRSWRS-36705,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.184,FORK,0.058,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36706,OTN-GlobalWRSWRS-36706,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.17,FORK,0.048,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36707,OTN-GlobalWRSWRS-36707,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.189,FORK,0.064,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36708,OTN-GlobalWRSWRS-36708,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.172,FORK,0.056,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36709,OTN-GlobalWRSWRS-36709,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.19,FORK,0.07,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36710,OTN-GlobalWRSWRS-36710,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.185,FORK,0.06,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36711,OTN-GlobalWRSWRS-36711,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.186,FORK,0.066,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36712,OTN-GlobalWRSWRS-36712,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.201,FORK,0.09,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36713,OTN-GlobalWRSWRS-36713,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.193,FORK,0.074,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36714,OTN-GlobalWRSWRS-36714,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.17,FORK,0.05,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36715,OTN-GlobalWRSWRS-36715,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.183,FORK,0.058,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36716,OTN-GlobalWRSWRS-36716,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.181,FORK,0.056,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36717,OTN-GlobalWRSWRS-36717,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.174,FORK,0.05,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36718,OTN-GlobalWRSWRS-36718,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.188,FORK,0.07,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36719,OTN-GlobalWRSWRS-36719,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.207,FORK,0.09,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36720,OTN-GlobalWRSWRS-36720,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.175,FORK,0.06,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36721,OTN-GlobalWRSWRS-36721,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.173,FORK,0.058,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36722,OTN-GlobalWRSWRS-36722,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.199,FORK,0.078,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36723,OTN-GlobalWRSWRS-36723,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.198,FORK,0.076,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36724,OTN-GlobalWRSWRS-36724,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.225,FORK,0.1,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36725,OTN-GlobalWRSWRS-36725,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.187,FORK,0.068,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36726,OTN-GlobalWRSWRS-36726,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.194,FORK,0.072,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36727,OTN-GlobalWRSWRS-36727,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.175,FORK,0.056,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36728,OTN-GlobalWRSWRS-36728,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.174,FORK,0.05,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36729,OTN-GlobalWRSWRS-36729,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.18,FORK,0.058,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36730,OTN-GlobalWRSWRS-36730,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.181,FORK,0.058,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36731,OTN-GlobalWRSWRS-36731,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.191,FORK,0.07,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36732,OTN-GlobalWRSWRS-36732,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.178,FORK,0.056,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36733,OTN-GlobalWRSWRS-36733,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.174,FORK,0.052,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36734,OTN-GlobalWRSWRS-36734,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.182,FORK,0.068,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36735,OTN-GlobalWRSWRS-36735,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.201,FORK,0.076,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36736,OTN-GlobalWRSWRS-36736,Atlantic salmon,Salmo salar,,127186,161996,W,Gold River,0.209,FORK,0.088,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36737,OTN-GlobalWRSWRS-36737,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.216,FORK,0.092,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36738,OTN-GlobalWRSWRS-36738,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.195,FORK,0.08,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36739,OTN-GlobalWRSWRS-36739,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.198,FORK,0.078,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36740,OTN-GlobalWRSWRS-36740,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.185,FORK,0.058,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36861,OTN-GlobalWRSWRS-36861,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.178,FORK,0.054,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36862,OTN-GlobalWRSWRS-36862,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.186,FORK,0.064,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36863,OTN-GlobalWRSWRS-36863,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.214,FORK,0.116,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36864,OTN-GlobalWRSWRS-36864,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.185,FORK,0.058,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36865,OTN-GlobalWRSWRS-36865,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.192,FORK,0.064,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36866,OTN-GlobalWRSWRS-36866,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.186,FORK,0.068,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36867,OTN-GlobalWRSWRS-36867,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.2,FORK,0.084,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36868,OTN-GlobalWRSWRS-36868,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.189,FORK,0.064,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36869,OTN-GlobalWRSWRS-36869,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.18,FORK,0.06,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36870,OTN-GlobalWRSWRS-36870,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.189,FORK,0.062,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36871,OTN-GlobalWRSWRS-36871,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.21,FORK,0.078,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36872,OTN-GlobalWRSWRS-36872,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.211,FORK,0.096,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36873,OTN-GlobalWRSWRS-36873,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.177,FORK,0.052,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36874,OTN-GlobalWRSWRS-36874,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.211,FORK,0.086,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36875,OTN-GlobalWRSWRS-36875,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.205,FORK,0.08,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36876,OTN-GlobalWRSWRS-36876,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.197,FORK,0.06,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36877,OTN-GlobalWRSWRS-36877,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.227,FORK,0.108,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36878,OTN-GlobalWRSWRS-36878,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.18,FORK,0.052,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36879,OTN-GlobalWRSWRS-36879,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.195,FORK,0.074,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36880,OTN-GlobalWRSWRS-36880,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.201,FORK,0.068,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36881,OTN-GlobalWRSWRS-36881,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.199,FORK,0.078,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36882,OTN-GlobalWRSWRS-36882,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.175,FORK,0.048,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36883,OTN-GlobalWRSWRS-36883,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.188,FORK,0.062,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36884,OTN-GlobalWRSWRS-36884,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.203,FORK,0.088,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36885,OTN-GlobalWRSWRS-36885,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.183,FORK,0.058,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36886,OTN-GlobalWRSWRS-36886,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.174,FORK,0.05,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36887,OTN-GlobalWRSWRS-36887,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.182,FORK,0.06,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36888,OTN-GlobalWRSWRS-36888,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.175,FORK,0.056,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36889,OTN-GlobalWRSWRS-36889,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.226,FORK,0.124,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36890,OTN-GlobalWRSWRS-36890,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.189,FORK,0.068,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36891,OTN-GlobalWRSWRS-36891,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.192,FORK,0.068,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36892,OTN-GlobalWRSWRS-36892,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.187,FORK,0.063,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36893,OTN-GlobalWRSWRS-36893,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.25,FORK,0.152,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36894,OTN-GlobalWRSWRS-36894,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.207,FORK,0.084,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36895,OTN-GlobalWRSWRS-36895,Atlantic salmon,Salmo salar,,127186,161996,W,West River (Sheet Harour),0.175,FORK,0.054,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36896,OTN-GlobalWRSWRS-36896,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.174,FORK,0.05,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36897,OTN-GlobalWRSWRS-36897,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.165,FORK,0.042,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36898,OTN-GlobalWRSWRS-36898,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.163,FORK,0.044,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36899,OTN-GlobalWRSWRS-36899,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.163,FORK,0.042,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36900,OTN-GlobalWRSWRS-36900,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.167,FORK,0.048,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36901,OTN-GlobalWRSWRS-36901,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.162,FORK,0.038,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36902,OTN-GlobalWRSWRS-36902,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.159,FORK,0.038,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36903,OTN-GlobalWRSWRS-36903,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.174,FORK,0.048,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36904,OTN-GlobalWRSWRS-36904,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.163,FORK,0.036,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36905,OTN-GlobalWRSWRS-36905,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.172,FORK,0.044,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36906,OTN-GlobalWRSWRS-36906,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.175,FORK,0.048,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36907,OTN-GlobalWRSWRS-36907,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.159,FORK,0.034,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36908,OTN-GlobalWRSWRS-36908,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.172,FORK,0.052,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36909,OTN-GlobalWRSWRS-36909,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.182,FORK,0.06,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36910,OTN-GlobalWRSWRS-36910,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.172,FORK,0.046,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36911,OTN-GlobalWRSWRS-36911,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.168,FORK,0.036,JUVENILE,NaN,
+WRS,OTN-Global,WRS-36912,OTN-GlobalWRSWRS-36912,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.177,FORK,0.05,JUVENILE,NaN,
+WRS,OTN-Global,WRS-37039,OTN-GlobalWRSWRS-37039,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.17,FORK,0.046,JUVENILE,NaN,
+WRS,OTN-Global,WRS-37045,OTN-GlobalWRSWRS-37045,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.162,FORK,0.038,JUVENILE,NaN,
+WRS,OTN-Global,WRS-37046,OTN-GlobalWRSWRS-37046,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.161,FORK,0.042,JUVENILE,NaN,
+WRS,OTN-Global,WRS-37047,OTN-GlobalWRSWRS-37047,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.165,FORK,0.042,JUVENILE,NaN,
+WRS,OTN-Global,WRS-37048,OTN-GlobalWRSWRS-37048,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.168,FORK,0.044,JUVENILE,NaN,
+WRS,OTN-Global,WRS-37049,OTN-GlobalWRSWRS-37049,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.173,FORK,0.05,JUVENILE,NaN,
+WRS,OTN-Global,WRS-37050,OTN-GlobalWRSWRS-37050,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.181,FORK,0.052,JUVENILE,NaN,
+WRS,OTN-Global,WRS-37051,OTN-GlobalWRSWRS-37051,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.178,FORK,0.058,JUVENILE,NaN,
+WRS,OTN-Global,WRS-37052,OTN-GlobalWRSWRS-37052,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.183,FORK,0.048,JUVENILE,NaN,
+WRS,OTN-Global,WRS-37053,OTN-GlobalWRSWRS-37053,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.166,FORK,0.04,JUVENILE,NaN,
+WRS,OTN-Global,WRS-37256,OTN-GlobalWRSWRS-37256,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.181,FORK,0.048,JUVENILE,NaN,
+WRS,OTN-Global,WRS-37257,OTN-GlobalWRSWRS-37257,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.179,FORK,0.046,JUVENILE,NaN,
+WRS,OTN-Global,WRS-37258,OTN-GlobalWRSWRS-37258,Atlantic salmon,Salmo salar,,127186,161996,W,St. Mary's River,0.16,FORK,0.04,JUVENILE,NaN,
+WRS,OTN-Global,WRS-37284,OTN-GlobalWRSWRS-37284,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.195,FORK,0.07,JUVENILE,NaN,
+WRS,OTN-Global,WRS-37285,OTN-GlobalWRSWRS-37285,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.175,FORK,0.054,JUVENILE,NaN,
+WRS,OTN-Global,WRS-37286,OTN-GlobalWRSWRS-37286,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.19,FORK,0.07,JUVENILE,NaN,
+WRS,OTN-Global,WRS-37287,OTN-GlobalWRSWRS-37287,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.209,FORK,0.078,JUVENILE,NaN,
+WRS,OTN-Global,WRS-37288,OTN-GlobalWRSWRS-37288,Atlantic salmon,Salmo salar,,127186,161996,W,LaHave River,0.178,FORK,0.05,JUVENILE,NaN,
+WRS,OTN-Global,WRS-10556,OTN-GlobalWRSWRS-10556,Atlantic salmon,Salmo salar,,127186,161996,W,WRSH,0.21,FORK,NaN,,NaN,
+WRS,OTN-Global,WRS-10557,OTN-GlobalWRSWRS-10557,Atlantic salmon,Salmo salar,,127186,161996,W,WRSH,0.201,FORK,NaN,,NaN,
+WRS,OTN-Global,WRS-10558,OTN-GlobalWRSWRS-10558,Atlantic salmon,Salmo salar,,127186,161996,W,WRSH,0.207,FORK,NaN,,NaN,
+WRS,OTN-Global,WRS-10559,OTN-GlobalWRSWRS-10559,Atlantic salmon,Salmo salar,,127186,161996,W,WRSH,0.204,FORK,NaN,,NaN,
+WRS,OTN-Global,WRS-10560,OTN-GlobalWRSWRS-10560,Atlantic salmon,Salmo salar,,127186,161996,W,WRSH,0.192,FORK,NaN,,NaN,
+WRS,OTN-Global,WRS-10561,OTN-GlobalWRSWRS-10561,Atlantic salmon,Salmo salar,,127186,161996,W,WRSH,0.214,FORK,NaN,,NaN,
+WRS,OTN-Global,WRS-10562,OTN-GlobalWRSWRS-10562,Atlantic salmon,Salmo salar,,127186,161996,W,WRSH,0.211,FORK,NaN,,NaN,
+WRS,OTN-Global,WRS-10563,OTN-GlobalWRSWRS-10563,Atlantic salmon,Salmo salar,,127186,161996,W,WRSH,0.202,FORK,NaN,,NaN,
+WRS,OTN-Global,WRS-10564,OTN-GlobalWRSWRS-10564,Atlantic salmon,Salmo salar,,127186,161996,W,WRSH,0.202,FORK,NaN,,NaN,
+WRS,OTN-Global,WRS-10565,OTN-GlobalWRSWRS-10565,Atlantic salmon,Salmo salar,,127186,161996,W,WRSH,0.204,FORK,NaN,,NaN,
+WRS,OTN-Global,WRS-10566,OTN-GlobalWRSWRS-10566,Atlantic salmon,Salmo salar,,127186,161996,W,WRSH,0.201,FORK,NaN,,NaN,
+WRS,OTN-Global,WRS-10567,OTN-GlobalWRSWRS-10567,Atlantic salmon,Salmo salar,,127186,161996,W,WRSH,0.202,FORK,NaN,,NaN,
+WRS,OTN-Global,WRS-10568,OTN-GlobalWRSWRS-10568,Atlantic salmon,Salmo salar,,127186,161996,W,WRSH,0.197,FORK,NaN,,NaN,
+WRS,OTN-Global,WRS-10569,OTN-GlobalWRSWRS-10569,Atlantic salmon,Salmo salar,,127186,161996,W,WRSH,0.184,FORK,NaN,,NaN,
