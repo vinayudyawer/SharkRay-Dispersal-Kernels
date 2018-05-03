@@ -38,7 +38,8 @@ satray<-filter(satdat, commonName %in% ray)
 # plot(satdat); map(add=T)
 
 ### Process data through ATT
-data<-satshark
+n<-names(table(satshark$commonName)) #c(1,5,8,9,10,)
+data<-filter(satshark, commonName %in% n[11])
 
 tagdata<- data %>%
   transmute(detection_timestamp = time,
