@@ -1,0 +1,13 @@
+---
+title: "Activity Space Scaling"
+author: "C Mull"
+date: "May 2, 2018"
+output: html_document
+---
+
+```{r load packages, echo=FALSE}
+library(tidyverse)
+library(phytools)
+library(MCMCglmm)
+```
+

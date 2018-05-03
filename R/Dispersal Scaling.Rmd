@@ -1,0 +1,19 @@
+---
+title: "DispersalScaling"
+author: "C Mull"
+date: "May 2, 2018"
+output: html_document
+---
+
+Analysis of Shark and Ray Dispersal Scaling
+
+```{r package loading, echo=FALSE}
+library(tidyverse)
+library(phytools)
+library(MCMCglmm)
+```
+
+```{r load dispersal data file, echo=FALSE}
+dispersal <- read.csv()
+```
+
