@@ -29,11 +29,24 @@ write.csv(trait, file = "Data/trait.data/trait.data.610.csv")
 
 
 
-#Merging IMOS data and trait data
-#################################
+#Merging IMOS data and fishery data for dispersal
+#################################################
+imos <- read.csv("Data/Acoustic data/IMOS/2018-03-16_IMOS_PassiveTelemetry.csv", header = T)
+fisheries <- read.csv("Data/Fisheries data/2018-03-16_Fisheries.csv", header = T)
 
-imos <- read.csv("Data/Acoustic data/IMOS/ATToutput/", header=T)
-#merge with life 
+#create tag types columns
+imos$tag.type <- rep("PassAcoustic", length(imos$tag_id))
+fisheries$tag.type <- rep("markrecap", length(fisheries$TagID))
+
+#select columns
+
+data.table::setnames(imos, "scientific_name", "G.species")
+
+
+
+#Merging dispersal data with trait data
+##################################
+
 trait <- read.csv("Data/610.lh.data.csv", header = T)
 
 imos$G.species <- gsub(" ", "_", imos$scientific_name) 

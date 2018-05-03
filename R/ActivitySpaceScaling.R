@@ -6,7 +6,7 @@ library(phytools)
 library(MCMCglmm)
 
 #load data
-imos <- read.csv("Data/IMOS/imos.merged.csv", header = T)
+imos <- read.csv("Data/Acoustic data/IMOS/imos.merged.csv", header = T)
 #markrecap <- read.csv("Data/2018-03-16_Fisheries.csv", header = T)
 
 #Convert movements to km^2 and mass to KG
