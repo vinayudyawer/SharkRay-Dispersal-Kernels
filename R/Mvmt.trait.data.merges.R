@@ -2,6 +2,9 @@
 #MERGING RAW DATA SETS FOR ANALYSIS#
 ####################################
 
+library(magrittr)
+library(dplyr)
+library(lubridate)
 
 #Merging trait data sets
 ########################
@@ -38,10 +41,43 @@ fisheries <- read.csv("Data/Fisheries data/2018-03-16_Fisheries.csv", header = T
 imos$tag.type <- rep("PassAcoustic", length(imos$tag_id))
 fisheries$tag.type <- rep("markrecap", length(fisheries$TagID))
 
+#recalculate columns for matching units
+imos.dispersal <- imos %>%
+  mutate(Length_cm = BodyLength_mm/10,
+         body.mass.kg = mass.g/1000,
+         sex = ifelse(sex=="Male", "M", "F"),
+         days.at.liberty = days_det/DI)
+
 #select columns
+imos.dispersal <- dplyr::select(imos.dispersal, scientific_name, Length_cm, body.mass.kg, sex, tag_id, tag_project_name, #Animal metadata 
+                           tag.type, num_det, days_det, num_stat, DI, ReleaseDate, release_latitude, release_longitude, days.at.liberty,#detection/location data 
+                           dis_min, dis_25, dis_50, dis_75, dis_max, dis_mean, dis_sd, #dispersal mertics
+                           Habitat, Trophic.group) #additional grouping data
 
-data.table::setnames(imos, "scientific_name", "G.species")
+fisheries.dispersal <- select(fisheries, Species, Rel_FL_cm, Sex, TagID, #animal
+                             tag.type, rel_date, rel_lat, rel_lon, days, #tag
+                             dis) #dispersal
 
+#rename columns
+data.table::setnames(imos.dispersal, c("scientific_name","num_stat"), c("G.species", "num_stations"))
+data.table::setnames(fisheries.dispersal, 
+                     c("Species","Rel_FL_cm","Sex","TagID","rel_date", "rel_lat", "rel_lon","days","dis"), 
+                     c("G.species","Length_cm","sex","tag_id","ReleaseDate","release_latitude","release_longitude","days.at.liberty","dis_max"))
+
+#match columns classes
+sapply(imos.dispersal, class)
+sapply(fisheries.dispersal, class)
+
+imos.dispersal$sex <- as.factor(imos.dispersal$sex)
+imos.dispersal$tag_id <- as.factor(imos.dispersal$tag_id)
+imos.dispersal$days.at.liberty <- as.integer(imos.dispersal$days.at.liberty)
+
+imos.dispersal$ReleaseDate <- as_date(imos.dispersal$ReleaseDate)
+fisheries.dispersal$ReleaseDate <- as_date(fisheries.dispersal$ReleaseDate)
+
+
+#bind dataframes
+dispersal <- bind_rows(imos.dispersal, fisheries.dispersal)
 
 
 #Merging dispersal data with trait data
