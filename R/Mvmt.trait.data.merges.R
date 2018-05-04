@@ -36,10 +36,12 @@ write.csv(trait, file = "Data/trait.data/trait.data.610.csv")
 #################################################
 imos <- read.csv("Data/Acoustic data/IMOS/2018-03-16_IMOS_PassiveTelemetry.csv", header = T)
 fisheries <- read.csv("Data/Fisheries data/2018-03-16_Fisheries.csv", header = T)
+satellite <- read.csv("Data/Satellite data/Dispersal Summaries/DispersalSummary_SatTags.csv", header = T)
 
 #create tag types columns
 imos$tag.type <- rep("PassAcoustic", length(imos$tag_id))
 fisheries$tag.type <- rep("markrecap", length(fisheries$TagID))
+satellite$tag.type <- rep("Sat", length(satellite$Tag.ID))
 
 #recalculate columns for matching units
 imos.dispersal <- imos %>%
@@ -58,8 +60,11 @@ fisheries.dispersal <- select(fisheries, Species, Rel_FL_cm, Sex, TagID, #animal
                              tag.type, rel_date, rel_lat, rel_lon, days, #tag
                              dis) #dispersal
 
+satellite.dispersal <- select(sat.dispersal, -Common.Name)
+
 #rename columns
 data.table::setnames(imos.dispersal, c("scientific_name","num_stat"), c("G.species", "num_stations"))
+
 data.table::setnames(fisheries.dispersal, 
                      c("Species","Rel_FL_cm","Sex","TagID","rel_date", "rel_lat", "rel_lon","days","dis"), 
                      c("G.species","Length_cm","sex","tag_id","ReleaseDate","release_latitude","release_longitude","days.at.liberty","dis_max"))
@@ -67,18 +72,26 @@ data.table::setnames(fisheries.dispersal,
 #match columns classes
 sapply(imos.dispersal, class)
 sapply(fisheries.dispersal, class)
+sapply(satellite.dispersal, class)
 
 imos.dispersal$sex <- as.factor(imos.dispersal$sex)
 imos.dispersal$tag_id <- as.factor(imos.dispersal$tag_id)
 imos.dispersal$days.at.liberty <- as.integer(imos.dispersal$days.at.liberty)
+satellite.dispersal$tag_id <- as.character(satellite.dispersal$tag_id)
+satellite.dispersal$G.species <- as.character(satellite.dispersal$G.species)
 
+#change date to date format
+imos.dispersal$ReleaseDate <- as.character(imos.dispersal$ReleaseDate)
 imos.dispersal$ReleaseDate <- as_date(imos.dispersal$ReleaseDate)
 fisheries.dispersal$ReleaseDate <- as_date(fisheries.dispersal$ReleaseDate)
 
+#trim short duration tags
+imos.dispersal <- filter(imos.dispersal, num_det>0)
+fisheries.dispersal <- filter(fisheries.dispersal, days.at.liberty>0)
 
 #bind dataframes
 dispersal <- bind_rows(imos.dispersal, fisheries.dispersal)
-
+dispersal <- bind_rows(dispersal, satellite.dispersal)
 
 #Merging dispersal data with trait data
 ##################################
