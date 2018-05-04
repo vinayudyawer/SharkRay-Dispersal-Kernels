@@ -6,7 +6,6 @@ displot<-function(data, cn, var="dis", xlab="Maximum dispersal distance (km)", y
                   quants=c(0,0.25,0.5,0.75,1), plotit=FALSE, ...)
   {
   dat<-data.frame(filter(data, common_name%in%cn))
-  dat<-filter(dat, !is.na(dis_max))
   if(nrow(dat)>3){
     a<-log(dat[dat[,var]>0,var]+1)
     xfit<-seq(0,max(a),length=1000)
