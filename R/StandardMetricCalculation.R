@@ -9,6 +9,7 @@ library(rgeos)
 library(raster)
 # library(maps); library(mapdata)
 
+### Satellite data (ATN)
 satdat<-fread("Data/Satellite data/2018-05-03_ATN_satData.csv")
 
 satdat <- as_tibble(satdat) %>%
@@ -113,5 +114,73 @@ hr$Subsetted<-hr$Subsetted%>% dplyr::select(Tag.ID, subset, Common.Name, MCP.100
 
 saveRDS(hr, file="MCParea_sattelite.rds")
 
-write_csv(hr$Overall, path="DispersalSummary_Rays.csv")
-write_csv(dailydisp, path="Daily_DispersalSummary_Rays.csv")
+write_csv(hr$Overall, path="DispersalSummary_SatTag.csv")
+write_csv(dailydisp, path="Daily_DispersalSummary_SatTag.csv")
+
+
+
+###########################################
+### OTN data
+
+otndet <- as_tibble(readRDS("Data/Acoustic data/OTN/otn_aat_detections.rds"))
+otnrec <- as_tibble(read.csv("Data/Acoustic data/OTN/otn_aat_receivers.csv"))
+otnani <- as_tibble(read.csv("Data/Acoustic data/OTN/otn_aat_animals.csv"))
+otnrel <- as_tibble(read.csv("Data/Acoustic data/OTN/otn_aat_tag_releases.csv"))
+
+tagdata<- otndet %>%
+  transmute(detection_timestamp = ymd_hms(time),
+            tag_id = detection_reference_id,
+            transmitter_id = transmitter_id,
+            station_name = deployment_id,
+            receiver_name = deployment_id, 
+            latitude= latitude,
+            longitude=longitude,
+            sensor_value= sensor_data,
+            sensor_unit = sensor_data_units)
+
+otntag<- left_join(otnani, otnrel, by=c("animal_reference_id" = "release_reference_id"))
+taginfo<- otntag %>%
+  transmute(tag_id = animal_reference_id,
+            scientific_name = scientificname,
+            common_name = vernacularname, 
+            tag_project_name = NA, 
+            release_latitude = latitude, 
+            release_longitude = longitude, 
+            ReleaseDate = ymd_hms(time), 
+            tag_expected_life_time_days = difftime(ymd_hms(time), ymd_hms(expected_enddate), "days"), 
+            tag_status = NA, 
+            sex = sex,
+            measurement = length)
+
+statinfo<- otnrec %>%
+  transmute(station_name = deployment_id, 
+            receiver_name = deployment_id, 
+            installation_name = array_name, 
+            project_name = deployment_project_reference, 
+            deploymentdatetime_timestamp = ymd_hms(time), 
+            recoverydatetime_timestamp = ymd_hms(recovery_datetime_utc), 
+            station_latitude = latitude, 
+            station_longitude = longitude, 
+            status = NA)
+
+attOTN<-setupData(tagdata, taginfo, statinfo, crs=CRS("+init=epsg:4269"))
+
+detOTN<-detectionSummary(attOTN)
+
+dispOTN<-dispersalSummary(attOTN)
+dispOTN$Velocity<-dispOTN$Consecutive.Dispersal/dispOTN$Time.Since.Last.Detection
+
+dailydispOTN<- dispOTN %>%
+  filter(Consecutive.Dispersal > 0) %>%
+  mutate(date=date(Date.Time)) %>%
+  group_by(date, Tag.ID) %>%
+  summarize(Transmitter.Name = first(Transmitter.Name),
+            common_name = first(Common.Name),
+            Daily.Dispersal = sum(Consecutive.Dispersal, na.rm=T),
+            mean.Daily.Velocity = mean(Velocity, na.rm=T))
+
+write_csv(dispOTN, path="DispersalSummary_OTN.csv")
+write_csv(dailydispOTN, path="Daily_DispersalSummary_OTN.csv")
+
+
+

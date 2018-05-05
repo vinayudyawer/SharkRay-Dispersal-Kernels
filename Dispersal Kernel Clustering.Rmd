@@ -61,13 +61,10 @@ for(i in 1:length(levels(as.factor(atf$common_name)))){
 imosdisp<-as_tibble(aDisp)
 ```
 
-- Satellite data: Maximal step dispersal distance
 ```{r, eval=T}
-## Sattelite ATN data summary
-satt<-as_tibble(sat) %>% 
-  group_by(Tag.ID) %>% 
-  summarize(common_name = first(Common.Name),
-            dis = max(Consecutive.Dispersal, na.rm=T))
+## OTN data summary
+otn<-as_tibble(imos) %>% dplyr::select(-common_name) %>% rename(common_name = scientific_name)
+atf<-filter(atf, !is.na(dis_max))
 
 aDisp<-data.frame(matrix(ncol=13, nrow=0, dimnames=list(c(), c("type","n","common_name","fit","mean","sd","shape","scale","quant.0.","quant.25.","quant.50.","quant.75.","quant.90."))))
 for(i in 1:length(levels(as.factor(atf$common_name)))){
@@ -79,6 +76,29 @@ for(i in 1:length(levels(as.factor(atf$common_name)))){
 }
 
 imosdisp<-as_tibble(aDisp)
+```
+
+
+- Satellite data: Maximal step dispersal distance
+```{r, eval=T}
+## Sattelite ATN data summary
+satt<-as_tibble(sat) %>% 
+  filter(!is.na(Consecutive.Dispersal)) %>%
+  group_by(Tag.ID) %>% 
+  summarize(common_name = first(Common.Name),
+            dis_mean = mean(Consecutive.Dispersal, na.rm=TRUE),
+            dis_max = max(Consecutive.Dispersal, na.rm=TRUE))
+
+sDisp<-data.frame(matrix(ncol=13, nrow=0, dimnames=list(c(), c("type","n","common_name","fit","mean","sd","shape","scale","quant.0.","quant.25.","quant.50.","quant.75.","quant.90."))))
+for(i in 1:length(levels(as.factor(satt$common_name)))){
+  disp<-displot(satt, cn=levels(as.factor(satt$common_name))[i], var="dis_max", dist="gamma")
+  dd<-data.frame(type="sat",
+                 n=n_distinct(satt[satt$common_name%in%levels(as.factor(satt$common_name))[i],"Tag.ID"]),
+                 disp)
+  if(i %in% 1) {sDisp<-dd} else {sDisp<-rbind(sDisp, dd)}
+}
+
+satdisp<-as_tibble(sDisp)
 ```
 
 
