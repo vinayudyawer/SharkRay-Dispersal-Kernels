@@ -1,5 +1,4 @@
 release_project_reference,datacenter_reference,tag_device_id,release_guid,release_reference_id,release_reference_type,latitude,longitude,time,expected_enddate,manufacturer,tag_model,tag_serial_number,tag_frequency,tag_coding_system,transmitted_id,transmittername,transmitter_type,tag_programming_id
-,,,,,,degrees_north,degrees_east,UTC,UTC,,,,,,,,,
 NSBS,OTN-Global,A69-9001-26651,OTN-GlobalNSBSA69-9001-26651,NSBS-Eva,ANIMAL,44.209163,-63.27934,2013-07-13T00:00:00Z,2019-07-29T00:00:00Z,VEMCO,V16-6X,1166129,,A69-9001,26651,A69-9001-26651,,
 NSBS,OTN-Global,A69-9001-26652,OTN-GlobalNSBSA69-9001-26652,NSBS-Percy,ANIMAL,44.20216,-63.24593,2013-08-02T00:00:00Z,2019-08-18T00:00:00Z,VEMCO,V16-6X,1166130,,A69-9001,26652,A69-9001-26652,,
 NSBS,OTN-Global,A69-9001-26653,OTN-GlobalNSBSA69-9001-26653,NSBS-Riley,ANIMAL,44.21458,-63.23736,2013-07-13T00:00:00Z,2019-07-29T00:00:00Z,VEMCO,V16-6X,1166131,,A69-9001,26653,A69-9001-26653,,

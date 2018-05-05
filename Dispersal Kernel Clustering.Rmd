@@ -12,10 +12,10 @@ Since we have multiple sources of data we will try and standardise the dispersal
 suppressPackageStartupMessages(library(tidyverse))
 
 ## Input data
-fish <- read.csv("Data/Fisheries data/2018-03-16_Fisheries.csv")
-imos <- read.csv("Data/Acoustic data/IMOS/2018-03-16_IMOS_PassiveTelemetry.csv")
+fish <- as_tibble(read.csv("Data/Fisheries data/2018-03-16_Fisheries.csv"))
+imos <- as_tibble(read.csv("Data/Acoustic data/IMOS/2018-03-16_IMOS_PassiveTelemetry.csv"))
 # otn <- readRDS("Data/Acoustic data/OTN/otn_aat_detections.rds")
-sat <- read.csv("Data/Satellite data/Dispersal Summaries/DispersalSummary_SatTags.csv")
+sat <- as_tibble(read.csv("Data/Satellite data/Dispersal Summaries/DispersalSummary_SatTags.csv"))
 ```
 
 The displot function in the R folder produces a dispersal kernel plot with associated metrics for each curve.

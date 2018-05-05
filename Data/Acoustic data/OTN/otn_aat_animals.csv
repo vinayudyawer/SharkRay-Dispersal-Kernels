@@ -1,5 +1,4 @@
 animal_project_reference,datacenter_reference,animal_reference_id,animal_guid,vernacularname,scientificname,taxonrank,aphiaid,tsn,animal_origin,stock,length,length_type,weight,life_stage,age,sex
-,,,,,,,,,,,,,,,,
 FRO,OTN-Global,FRO-T14,OTN-GlobalFROFRO-T14,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.561,FORK,2.35,,NaN,U
 FRO,OTN-Global,FRO-T2,OTN-GlobalFROFRO-T2,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.576,FORK,2.53,,NaN,U
 FRO,OTN-Global,FRO-T25,OTN-GlobalFROFRO-T25,Arctic char,Salvelinus alpinus,,127188,162001,W,UNK,0.57,FORK,2.41,,NaN,U

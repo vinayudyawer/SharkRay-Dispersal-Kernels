@@ -1,5 +1,4 @@
 deployment_project_reference,datacenter_reference,deployment_id,deployment_guid,receiver_manufacturer,receiver_model,frequencies_monitored,receiver_coding_scheme,receiver_serial_number,latitude,longitude,time,recovery_datetime_utc,array_name,receiver_reference_type,receiver_reference_id,bottom_depth,depth,deployment_comments,deployed_by,expected_receiver_life
-,,,,,,,,,degrees_north,degrees_east,UTC,UTC,,,,m,m,,,
 ACS,OTN-Global,ACS-SC1-1115765-1,OTN-GlobalACSACS-SC1-1115765-1,VEMCO,VMT,,,1115765,65.4777,-65.8898,2011-07-23T15:31:30Z,2012-08-25T17:12:00Z,ACS,ManmadePlatform,ACS_ACS-SC1,1500.0,1316.0,,,NaN
 ACS,OTN-Global,ACS-SC3-1115767-1,OTN-GlobalACSACS-SC3-1115767-1,VEMCO,VMT,,,1115767,65.4646,-65.971,2011-07-23T16:16:20Z,2012-08-25T19:24:00Z,ACS,ManmadePlatform,ACS_ACS-SC3,1500.0,1316.0,,,NaN
 ACS,OTN-Global,ACS025-VR2W-110159-1,OTN-GlobalACSACS025-VR2W-110159-1,VEMCO,VR2W,,,110159,65.95117,-66.35183,2010-08-16T12:25:00Z,2011-07-12T20:32:00Z,ACS,ManmadePlatform,ACS_ACS025,316.0,309.2,,,NaN
