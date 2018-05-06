@@ -1133,7 +1133,7 @@
 "CSIRO_NT","Aus","2280","Carcharhinus tilstoni","M",83.9,1984-01-21,-11.05,132.01667,1984-08-23,-10.94167,132.2,"Y","Carcharhinus tilstoni",215,23.3457239485056
 "CSIRO_NT","Aus","2281","Carcharhinus tilstoni","M",68.9,1984-01-21,-11.05,132.01667,1984-02-26,-11.05,131.88333,"Y","Carcharhinus tilstoni",36,14.5699439830341
 "CSIRO_NT","Aus","2294","Carcharhinus macloti","F",69.1,1985-05-25,-11.05,136.66667,1986-03-06,-9.96667,136.5,"Y","Carcharhinus macloti",285,121.20831446291
-"CSIRO_NT","Aus","2294","Galeocerdo cuvieri","F",145.5,1984-01-21,-11.08333,132.06667,1984-03-09,-10.30667,130.87667,"Y","Galeocerdo cuvieri",48,155.972717902552
+"CSIRO_NT","Aus","2294","Galeocerdo cuvier","F",145.5,1984-01-21,-11.08333,132.06667,1984-03-09,-10.30667,130.87667,"Y","Galeocerdo cuvier",48,155.972717902552
 "CSIRO_NT","Aus","2322","Carcharhinus sorrah","F",79.6,1984-01-22,-11.08333,132.1,1985-09-16,-11.13333,132.08333,"Y","Carcharhinus sorrah",603,5.82283860455839
 "CSIRO_NT","Aus","2343","Carcharhinus tilstoni","F",57.4,1984-01-22,-11.08333,132.1,1984-01-31,-11.03333,132.26667,"Y","Carcharhinus tilstoni",9,19.0326441101012
 "CSIRO_NT","Aus","2346","Carcharhinus sorrah","F",72.7,1984-01-22,-11.08333,132.1,1984-12-15,-11.08333,132.08333,"Y","Carcharhinus sorrah",328,1.82131028860078
@@ -1216,7 +1216,7 @@
 "CSIRO_NT","Aus","3246","Carcharhinus tilstoni","M",82,1984-02-07,-11.93333,136.7,1987-06-30,-11.91667,136.75,"Y","Carcharhinus tilstoni",1239,5.74996850833657
 "CSIRO_NT","Aus","3253","Carcharhinus tilstoni","M",72.1,1984-02-07,-11.9,136.75,1987-08-13,-12,136.83333,"Y","Carcharhinus tilstoni",1283,14.3091382169517
 "CSIRO_NT","Aus","3260","Carcharhinus tilstoni","M",94.8,1984-02-07,-11.9,136.75,1984-02-27,-11.64667,137.15,"Y","Carcharhinus tilstoni",20,51.8265016089387
-"CSIRO_NT","Aus","3283","Galeocerdo cuvieri","F",230,1984-02-07,-11.93333,136.71667,1989-10-20,-12.11667,136.7,"Y","Galeocerdo cuvieri",2082,20.3624380238462
+"CSIRO_NT","Aus","3283","Galeocerdo cuvier","F",230,1984-02-07,-11.93333,136.71667,1989-10-20,-12.11667,136.7,"Y","Galeocerdo cuvier",2082,20.3624380238462
 "CSIRO_NT","Aus","3305","Carcharhinus tilstoni","M",64,1984-02-08,-12.01667,136.73333,1991-04-09,-10.7,137.8,"Y","Carcharhinus tilstoni",2617,186.460922344488
 "CSIRO_NT","Aus","3410","Carcharhinus tilstoni","M",84.2,1984-02-21,-11.66667,136.61667,1985-12-25,-10.83333,137.7,"Y","Carcharhinus tilstoni",673,149.967013929653
 "CSIRO_NT","Aus","3424","Carcharhinus tilstoni","F",79.3,1984-02-22,-12.16667,136.86667,1984-11-14,-10.41667,138.01667,"Y","Carcharhinus tilstoni",266,230.726696847817

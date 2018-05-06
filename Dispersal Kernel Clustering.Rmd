@@ -2,7 +2,11 @@
 title: "Dispersal Kernel clustering analysis for SharkRayMPA project"
 author: "Vinay Udyawer"
 date: "04/05/2018"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_float: true 
+    depth: 5
 ---
 
 Script to calculate dispersal kernel metrics before conducting clustering analysis
@@ -14,9 +18,36 @@ suppressPackageStartupMessages(library(tidyverse))
 ## Input data
 fish <- as_tibble(read.csv("Data/Fisheries data/2018-03-16_Fisheries.csv"))
 imos <- as_tibble(read.csv("Data/Acoustic data/IMOS/2018-03-16_IMOS_PassiveTelemetry.csv"))
-# otn <- readRDS("Data/Acoustic data/OTN/otn_aat_detections.rds")
+otn <- readRDS("Data/Acoustic data/OTN/ATToutput/DispersalSummary_OTN.rds")
 sat <- as_tibble(read.csv("Data/Satellite data/Dispersal Summaries/DispersalSummary_SatTags.csv"))
 ```
+
+# Mapping data
+```{r, eval=F}
+suppressPackageStartupMessages({
+  library(maps)
+  library(mapdata)
+  library(maptools)
+  library(ggplot2)})
+
+dat<-rbind(transmute(fish, Tag.ID=as.character(TagID), lat=rel_lat, lon=rel_lon, source="Mark Recapture"),
+           transmute(imos, Tag.ID=as.character(tag_id), lat=release_latitude, lon=release_longitude, source="Passive Telemetry"),
+           otn %>% filter(Common.Name %in% "blue shark") %>% group_by(Tag.ID) %>% summarize(lat=first(Release.Latitude), lon=first(Release.Longitude), source="Passive Telemetry"),
+           sat %>% group_by(Tag.ID) %>% summarize(lat=first(Latitude), lon=first(Longitude), source="Satellite Telemetry"))
+
+dat[dat$lon< -180,"lon"]<-dat[dat$lon< -180,"lon"]+360
+
+wrld<-borders("world", fill=8, colour=NA)
+
+png("Tagplot.png", width=11, height=6, units="in", res=500)
+ggplot() +
+  wrld +
+  geom_point(aes(x=lon, y=lat, color=source), data=dat, cex=0.6) +
+  theme_void() +
+  theme(legend.position="top", legend.title= element_text(colour=NA))
+dev.off()
+```
+
 
 The displot function in the R folder produces a dispersal kernel plot with associated metrics for each curve.
 
@@ -24,14 +55,17 @@ The displot function in the R folder produces a dispersal kernel plot with assoc
 source("R/displot.R")
 ```
 
-## Initial comparisons between fisheries, acoustic and satellite data
+# Initial comparisons between fisheries, acoustic and satellite data
 
 Because of the difference in resolution, we will calculate dispersal kernels (gamma distribution) and associated parameters using Maximum dispersal distances. This is defined in each dataset by:
 
-- Fisheries data: dispersal distance between mark and final recapture
+## Fisheries data
+
+Dispersal distance between mark and final recapture.
+
 ```{r, eval=T}
 ## fisheries data summary
-fDisp<-data.frame(matrix(ncol=13, nrow=0, dimnames=list(c(), c("type","n","common_name","fit","mean","sd","shape","scale","quant.0.","quant.25.","quant.50.","quant.75.","quant.90."))))
+fDisp<-as_tibble(matrix(ncol=13, nrow=0, dimnames=list(c(), c("type","n","common_name","fit","mean","sd","shape","scale","quant.0.","quant.25.","quant.50.","quant.75.","quant.90."))))
 for(i in 1:length(levels(as.factor(fish$common_name)))){
   disp<-displot(fish, cn=levels(as.factor(fish$common_name))[i], var="dis", dist="gamma")
   dd<-data.frame(type="mrecap",
@@ -43,7 +77,11 @@ for(i in 1:length(levels(as.factor(fish$common_name)))){
 fishdisp<-as_tibble(fDisp)
 ```
 
-- Acoustic data: Maximal step dispersal distance
+## Acoustic data
+
+Maximal step dispersal distance
+
+IMOS
 ```{r, eval=T}
 ## IMOS data summary
 atf<-as_tibble(imos) %>% dplyr::select(-common_name) %>% rename(common_name = scientific_name)
@@ -52,7 +90,7 @@ atf<-filter(atf, !is.na(dis_max))
 aDisp<-data.frame(matrix(ncol=13, nrow=0, dimnames=list(c(), c("type","n","common_name","fit","mean","sd","shape","scale","quant.0.","quant.25.","quant.50.","quant.75.","quant.90."))))
 for(i in 1:length(levels(as.factor(atf$common_name)))){
   disp<-displot(atf, cn=levels(as.factor(atf$common_name))[i], var="dis_max", dist="gamma")
-  dd<-data.frame(type="imos",
+  dd<-data.frame(type="pass",
                  n=n_distinct(atf[atf$common_name%in%levels(as.factor(atf$common_name))[i],"tag_id"]),
                  disp)
   if(i %in% 1) {aDisp<-dd} else {aDisp<-rbind(aDisp, dd)}
@@ -61,25 +99,34 @@ for(i in 1:length(levels(as.factor(atf$common_name)))){
 imosdisp<-as_tibble(aDisp)
 ```
 
+OTN:
 ```{r, eval=T}
 ## OTN data summary
-otn<-as_tibble(imos) %>% dplyr::select(-common_name) %>% rename(common_name = scientific_name)
-atf<-filter(atf, !is.na(dis_max))
+ott<- 
+  otn %>% 
+  filter(Common.Name %in% "blue shark") %>% 
+  group_by(Tag.ID) %>%
+  summarize(common_name = first(Common.Name),
+            dis_max = max(Consecutive.Dispersal, na.rm=TRUE))
 
-aDisp<-data.frame(matrix(ncol=13, nrow=0, dimnames=list(c(), c("type","n","common_name","fit","mean","sd","shape","scale","quant.0.","quant.25.","quant.50.","quant.75.","quant.90."))))
-for(i in 1:length(levels(as.factor(atf$common_name)))){
-  disp<-displot(atf, cn=levels(as.factor(atf$common_name))[i], var="dis_max", dist="gamma")
-  dd<-data.frame(type="imos",
-                 n=n_distinct(atf[atf$common_name%in%levels(as.factor(atf$common_name))[i],"tag_id"]),
+oDisp<-data.frame(matrix(ncol=13, nrow=0, dimnames=list(c(), c("type","n","common_name","fit","mean","sd","shape","scale","quant.0.","quant.25.","quant.50.","quant.75.","quant.90."))))
+for(i in 1:length(levels(as.factor(ott$common_name)))){
+  disp<-displot(ott, cn=levels(as.factor(ott$common_name))[i], var="dis_max", dist="gamma")
+  dd<-data.frame(type="pass",
+                 n=n_distinct(ott[ott$common_name%in%levels(as.factor(ott$common_name))[i],"Tag.ID"]),
                  disp)
-  if(i %in% 1) {aDisp<-dd} else {aDisp<-rbind(aDisp, dd)}
+  if(i %in% 1) {oDisp<-dd} else {oDisp<-rbind(oDisp, dd)}
 }
 
-imosdisp<-as_tibble(aDisp)
+oDisp<- oDisp %>% filter(common_name == "blue shark")
+oDisp$common_name<-"Prionace glauca"
+otndisp<-as_tibble(oDisp)
 ```
 
 
-- Satellite data: Maximal step dispersal distance
+## Satellite data
+
+Maximal step dispersal distance
 ```{r, eval=T}
 ## Sattelite ATN data summary
 satt<-as_tibble(sat) %>% 
@@ -98,9 +145,60 @@ for(i in 1:length(levels(as.factor(satt$common_name)))){
   if(i %in% 1) {sDisp<-dd} else {sDisp<-rbind(sDisp, dd)}
 }
 
+sDisp$common_name<-c("Cetorhinus maximus", "Prionace glauca", "Alopias vulpinus",
+                     "Mobula sp", "Carcharhinus galapagensis", "Somniosus microcephalus",
+                     "Carcharhinus amblyrhynchos", "Carcharodon carcharias", "Manta birostris",
+                     "Carcharhinus longimanus","Lamna nasus","Lamna ditropis",
+                     "Carcharias taurus", "Isurus oxyrinchus", "Carcharhinus falciformis",
+                     "Carcharhinus albimarginatus", "Galeocerdo cuvier", "Rhincodon typus",
+                     "Carcharodon carcharias")
 satdisp<-as_tibble(sDisp)
 ```
 
+
+## Combine the datasets together into a single tibble
+
+```{r, eval=T}
+
+MaxDisp<-rbind(fishdisp, imosdisp, otndisp, satdisp)
+MaxDisp$common_name<-factor(MaxDisp$common_name, levels=sort(levels(MaxDisp$common_name)))
+
+tab<- 
+  MaxDisp %>%
+  group_by(common_name, type) %>%
+  summarize(num = sum(n)) %>%
+  tidyr::spread(type, num) %>%
+  data.frame()
+
+tab$group<-c(rep("shark",28), rep("ray",2),
+             rep("shark",8), rep("ray",4),
+             rep("shark",4), rep("ray",3),
+             "shark","ray",
+             rep("shark",5), "ray",
+             rep("shark",15), "ray",
+             "shark",rep("ray",3))
+
+tab$tot<-rowSums(tab[c("mrecap","pass","sat")], na.rm=T)
+tab<-tab[with(tab, order(group,tot)),]
+
+  
+```
+
+## Species breakdown
+
+```{r, eval=F}
+
+quartz(height=6.5, width=8); par(mar=c(4.5,10,0,1), mfrow=c(1,2))
+barplot(t(tab[tab$group%in%"shark",c("mrecap","pass","sat")]), border=NA, las=1, horiz=T, names.arg=tab[tab$group%in%"shark","common_name"], cex.names=0.5, font=4, xaxt="n", xlab="Number of individuals tagged")
+axis(1)
+barplot(numspp[!(numspp$group%in%c("fish","reptile","invert")),"tag_id"], col=c("grey", "plum2","palegreen3","gold","steelblue2","coral")[numspp[!(numspp$group%in%c("fish","reptile","invert")),"group"]], 
+        border=NA, las=1, horiz=T, names.arg=numspp[!(numspp$group%in%c("fish","reptile","invert")),"scientific_name"], cex.names=0.65, font=4, xaxt="n", xlim=c(0,200), xlab="Number of individuals tagged")
+axis(1)
+
+
+```
+
+# Cluster Analysis
 
 
 
