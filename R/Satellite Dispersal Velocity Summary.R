@@ -1,7 +1,11 @@
+satellite <- splitstackshape::cSplit(satellite, 'Date.Time',sep = "T", type.convert = F)
+satellite$date <- lubridate::ymd(satellite$Date.Time_1)
+
 sat.dispersal <- satellite %>%
   group_by(Tag.ID) %>%
   summarise(tag.type = first(tag.type),
             Common.Name = first(Common.Name),
+            days.at.liberty = last(date) - first(date),
             dis_min = min(Consecutive.Dispersal, na.rm = T),
             dis_25 = quantile(Consecutive.Dispersal, probs=0.25, na.rm = T),
             dis_50 = quantile(Consecutive.Dispersal, probs=0.5, na.rm = T),
@@ -42,4 +46,11 @@ sat.dispersal <- sat.dispersal %>%
                                 Galeocerdo_cuvier= "Tiger Shark",
                                 Rhincodon_typus= "Whale Shark"))
 
-data.table::setnames(sat.dispersal, "Tag.ID", "tag_id")                                
+data.table::setnames(sat.dispersal, "Tag.ID", "tag_id")     
+
+library(lubridate)
+date1='20160101'
+date2='20160501'
+x=interval(ymd(date1),ymd(date2))
+x= x %/% days(1)
+print(x)
