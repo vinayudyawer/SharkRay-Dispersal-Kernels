@@ -44,14 +44,14 @@ fisheries$tag.type <- rep("markrecap", length(fisheries$TagID))
 satellite$tag.type <- rep("Sat", length(satellite$Tag.ID))
 
 #recalculate columns for matching units
-imos.dispersal <- imos %>%
+imos <- imos %>%
   mutate(Length_cm = BodyLength_mm/10,
          body.mass.kg = mass.g/1000,
          sex = ifelse(sex=="Male", "M", "F"),
          days.at.liberty = days_det/DI)
 
 #select columns
-imos.dispersal <- dplyr::select(imos.dispersal, scientific_name, Length_cm, body.mass.kg, sex, tag_id, tag_project_name, #Animal metadata 
+imos.dispersal <- dplyr::select(imos, scientific_name, Length_cm, body.mass.kg, sex, tag_id, tag_project_name, #Animal metadata 
                            tag.type, num_det, days_det, num_stat, DI, ReleaseDate, release_latitude, release_longitude, days.at.liberty,#detection/location data 
                            dis_min, dis_25, dis_50, dis_75, dis_max, dis_mean, dis_sd, #dispersal mertics
                            Habitat, Trophic.group) #additional grouping data
@@ -93,20 +93,41 @@ fisheries.dispersal <- filter(fisheries.dispersal, days.at.liberty>0)
 #bind dataframes
 dispersal <- bind_rows(imos.dispersal, fisheries.dispersal)
 dispersal <- bind_rows(dispersal, sat.dispersal)
+dispersal <- filter(dispersal, days.at.liberty>0)
+
+dispersal$G.species <- gsub(" ", "_", dispersal$G.species) 
 
 #Save DispersalRDS
-saveRDS(dispersal, file = "Full.Dispersal.rds")
+saveRDS(dispersal, file = "Data/Dispersal.all.tagtypes.rds")
 
 #Merging dispersal data with trait data
 ##################################
 
-trait <- read.csv("Data/610.lh.data.csv", header = T)
+trait <- read.csv("Data/trait.data/trait.data.610.csv", header = T)
 
-imos$G.species <- gsub(" ", "_", imos$scientific_name) 
+
  
-merge <- left_join(imos, lh.data, "G.species") 
+merge <- left_join(dispersal, trait, "G.species") 
 
-library (nlme)
-library(lme4)
-model <- lme(log10(mcp.km) ~ log10(mass.kg) + Mean.depth, random= ~  Mean.depth | superorder, data=imos, na.action = na.exclude)
-summary(model)
+plot(log10(merge$dis_max)~merge$Length_cm, col = as.factor(merge$habitat2))
+summary(merge$Habitat)
+
+
+
+#Merge Activity Space Data Sets
+###############################
+
+#imos is already loaded from above
+
+#upload sat Activity Space 
+
+sat.as <- readRDS("Data/Satellite data/HR Summaries/MCParea_satelliteData.rds")
+
+sat.as$Overall
+sat.as$Subsetted
+
+
+
+
+
+

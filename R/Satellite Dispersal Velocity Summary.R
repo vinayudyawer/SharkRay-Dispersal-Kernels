@@ -1,3 +1,4 @@
+satellite <- read.csv("Data/Satellite data/Dispersal Summaries/DispersalSummary_SatTags.csv", header = T)
 satellite <- splitstackshape::cSplit(satellite, 'Date.Time',sep = "T", type.convert = F)
 satellite$date <- lubridate::ymd(satellite$Date.Time_1)
 
@@ -23,7 +24,6 @@ sat.dispersal <- satellite %>%
              
 sat.dispersal <- filter(sat.dispersal, !is.na(dis_25))
 
-lubridate
 
 sat.dispersal <- sat.dispersal %>%
   mutate(G.species = forcats::fct_recode(Common.Name, Carcharodon_carcharias= "White Shark", 
@@ -50,4 +50,4 @@ data.table::setnames(sat.dispersal, "Tag.ID", "tag_id")
 
 sat.dispersal <- splitstackshape::cSplit(sat.dispersal, 'days.at.liberty',sep = " ", type.convert = F)
 sat.dispersal <- rename(sat.dispersal, days.at.liberty = days.at.liberty_1)
-sat.dispersal <- rename(sat.dispersal, G.species = Common.Name)
+
