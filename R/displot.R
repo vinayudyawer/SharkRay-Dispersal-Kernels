@@ -2,8 +2,8 @@
 
 displot<-function(data, cn, var="dis", xlab="Maximum dispersal distance (km)", ylab="Relative frequency", 
                   breaks=seq(0,log(10000+1), l=30), mar=c(4,4,1,1), bar.col=NA, bar.border=1,
-                  xlim=log(c(0,5000)+1), lcol=2, dist="gamma", 
-                  quants=c(0,0.25,0.5,0.75,1), plotit=FALSE, ...)
+                  xlim=log(c(0,5000)+1), ylim=NULL, lcol=2, dist="gamma", 
+                  quants=c(0,0.25,0.5,0.75,1), plotit=FALSE, bars=TRUE, lab=TRUE, ...)
   {
   dat<-data.frame(filter(data, common_name%in%cn))
   if(nrow(dat)>3){
@@ -15,8 +15,10 @@ displot<-function(data, cn, var="dis", xlab="Maximum dispersal distance (km)", y
       # normal distribution
       yfn<-dnorm(xfit,mean=mean(a),sd=sd(a));
       yfitn<-yfn
+      if(is.null(ylim)){yy<-range(0,max(yfitn[is.finite(yfitn)], na.rm=T),max(h$density, na.rm=T))}
       if(plotit){
-        hist(a, breaks=breaks, freq=F, xaxt="n", las=1, main="", ylab=ylab, xlab=xlab, col=bar.col, border=bar.border, xlim=xlim, ylim=range(0,max(yfitn, na.rm=T),max(h$density, na.rm=T)), ...)
+        if(bars==TRUE){hist(a, breaks=breaks, freq=F, xaxt="n", las=1, main="", ylab=ylab, xlab=xlab, col=bar.col, border=bar.border, xlim=xlim, ylim=yy, ...)}
+        else{hist(a, breaks=breaks, freq=F, xaxt="n", las=1, main="", ylab=ylab, xlab=xlab, col=NA, border=NA, xlim=xlim, ylim=yy, ...)}
         axis(1, at= log(c(0.01, seq(0.1,1,l=10), seq(1,10,l=10),seq(10,100,l=10), seq(100,1000,l=10), seq(1000,10000,l=10))+1), labels=F, tcl=-0.3)
         axis(1, at= log(c(0.1,1,10,100,1000,10000)+1), labels=c(0.1,1,10,100,1000,10000))
         lines(xfit, yfitn, col=lcol, lwd=2)}
@@ -26,8 +28,10 @@ displot<-function(data, cn, var="dis", xlab="Maximum dispersal distance (km)", y
       # gamma distribution
       yfg<-dgamma(xfit,shape=mean(a)^2/var(a),scale=var(a)/mean(a)); 
       yfitg<-yfg
+      if(is.null(ylim)){yy<-range(0,max(yfitg[is.finite(yfitg)], na.rm=T),max(h$density, na.rm=T))}
       if(plotit){
-        hist(a, breaks=breaks, freq=F, xaxt="n", las=1, main="", ylab=ylab, xlab=xlab, col=bar.col, border=bar.border, xlim=xlim, ylim=range(0,max(yfitg, na.rm=T),max(h$density, na.rm=T)), ...)
+        if(bars==TRUE){hist(a, breaks=breaks, freq=F, xaxt="n", las=1, main="", ylab=ylab, xlab=xlab, col=bar.col, border=bar.border, xlim=xlim, ylim=yy, ...)}
+        else{hist(a, breaks=breaks, freq=F, xaxt="n", las=1, main="", ylab=ylab, xlab=xlab, col=NA, border=NA, xlim=xlim, ylim=yy, ...)}
         axis(1, at= log(c(0.01, seq(0.1,1,l=10), seq(1,10,l=10),seq(10,100,l=10), seq(100,1000,l=10), seq(1000,10000,l=10))+1), labels=F, tcl=-0.3)
         axis(1, at= log(c(0.1,1,10,100,1000,10000)+1), labels=c(0.1,1,10,100,1000,10000))
         lines(xfit, yfitg, col=lcol, lwd=2)
@@ -38,8 +42,10 @@ displot<-function(data, cn, var="dis", xlab="Maximum dispersal distance (km)", y
       # kernel distribution
       yfk<-density(a, n=1000, adjust=2)$y
       yfitk<-yfk
+      if(is.null(ylim)){yy<-range(0,max(yfitk[is.finite(yfitk)], na.rm=T),max(h$density, na.rm=T))}
       if(plotit){
-        hist(a, breaks=breaks, freq=F, xaxt="n", las=1, main="", ylab=ylab, xlab=xlab, col=bar.col, border=bar.border, xlim=xlim, ylim=range(0,max(yfitk, na.rm=T),max(h$density, na.rm=T)), ...)
+        if(bars==TRUE){hist(a, breaks=breaks, freq=F, xaxt="n", las=1, main="", ylab=ylab, xlab=xlab, col=bar.col, border=bar.border, xlim=xlim, ylim=yy, ...)}
+        else{hist(a, breaks=breaks, freq=F, xaxt="n", las=1, main="", ylab=ylab, xlab=xlab, col=NA, border=NA, xlim=xlim, ylim=yy, ...)}
         axis(1, at= log(c(0.01, seq(0.1,1,l=10), seq(1,10,l=10),seq(10,100,l=10), seq(100,1000,l=10), seq(1000,10000,l=10))+1), labels=F, tcl=-0.3)
         axis(1, at= log(c(0.1,1,10,100,1000,10000)+1), labels=c(0.1,1,10,100,1000,10000))
         lines(xfit, yfitk, col=lcol, lwd=2)
@@ -48,7 +54,7 @@ displot<-function(data, cn, var="dis", xlab="Maximum dispersal distance (km)", y
     }
     if(plotit){
       box(bty="l")
-      legend('topright', bty="n", pch=NA, col=NA, legend=cn, text.font=2, cex=1.2)
+      if(lab){legend('topright', bty="n", pch=NA, col=NA, legend=cn, text.font=2, cex=1.2)}
       }
     }
   else {
