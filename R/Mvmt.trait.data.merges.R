@@ -72,13 +72,14 @@ data.table::setnames(fisheries.dispersal,
 #match columns classes
 sapply(imos.dispersal, class)
 sapply(fisheries.dispersal, class)
-sapply(satellite.dispersal, class)
+sapply(sat.dispersal, class)
 
 imos.dispersal$sex <- as.factor(imos.dispersal$sex)
 imos.dispersal$tag_id <- as.factor(imos.dispersal$tag_id)
 imos.dispersal$days.at.liberty <- as.integer(imos.dispersal$days.at.liberty)
-satellite.dispersal$tag_id <- as.character(satellite.dispersal$tag_id)
-satellite.dispersal$G.species <- as.character(satellite.dispersal$G.species)
+sat.dispersal$tag_id <- as.character(sat.dispersal$tag_id)
+sat.dispersal$G.species <- as.character(sat.dispersal$G.species)
+sat.dispersal$days.at.liberty <- as.integer(sat.dispersal$days.at.liberty)
 
 #change date to date format
 imos.dispersal$ReleaseDate <- as.character(imos.dispersal$ReleaseDate)
@@ -91,7 +92,10 @@ fisheries.dispersal <- filter(fisheries.dispersal, days.at.liberty>0)
 
 #bind dataframes
 dispersal <- bind_rows(imos.dispersal, fisheries.dispersal)
-dispersal <- bind_rows(dispersal, satellite.dispersal)
+dispersal <- bind_rows(dispersal, sat.dispersal)
+
+#Save DispersalRDS
+saveRDS(dispersal, file = "Full.Dispersal.rds")
 
 #Merging dispersal data with trait data
 ##################################

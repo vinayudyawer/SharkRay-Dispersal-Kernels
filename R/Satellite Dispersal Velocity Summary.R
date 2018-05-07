@@ -48,9 +48,6 @@ sat.dispersal <- sat.dispersal %>%
 
 data.table::setnames(sat.dispersal, "Tag.ID", "tag_id")     
 
-library(lubridate)
-date1='20160101'
-date2='20160501'
-x=interval(ymd(date1),ymd(date2))
-x= x %/% days(1)
-print(x)
+sat.dispersal <- splitstackshape::cSplit(sat.dispersal, 'days.at.liberty',sep = " ", type.convert = F)
+sat.dispersal <- rename(sat.dispersal, days.at.liberty = days.at.liberty_1)
+sat.dispersal <- rename(sat.dispersal, G.species = Common.Name)
