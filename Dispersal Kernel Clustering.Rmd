@@ -360,6 +360,7 @@ ppHclust<-hclust(dist(scalepp, method = "euclidean"), method = "complete")
 #   color_labels(k=5)
 # circlize_dendrogram(dend, labels_track_height = 0.1, dend_track_height = 0.85, cex=0.1)
 
+cutree(ppHclust, k=4)
 
 fviz_dend(ppHclust, k = 4, 
           cex = 0.4,
