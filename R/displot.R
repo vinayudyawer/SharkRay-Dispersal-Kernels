@@ -1,8 +1,8 @@
 ### Create dispersal kernel plots for SharkRayMPA project
 
 displot<-function(data, cn, var="dis", xlab="Maximum dispersal distance (km)", ylab="Relative frequency", 
-                  breaks=seq(0,log(10000+1), l=30), mar=c(4,4,1,1), bar.col=NA, bar.border=1,
-                  xlim=log(c(0,5000)+1), ylim=NULL, lcol=2, dist="gamma", 
+                  breaks=seq(0,log(200000+1), l=30), mar=c(4,4,1,1), bar.col=NA, bar.border=1,
+                  xlim=log(c(0,5000)+1), ylim=NULL, lcol=2, dist="gamma", verbose=TRUE,
                   quants=c(0,0.25,0.5,0.75,1), plotit=FALSE, bars=TRUE, lab=TRUE, ...)
   {
   dat<-data.frame(filter(data, common_name%in%cn))
@@ -64,5 +64,5 @@ displot<-function(data, cn, var="dis", xlab="Maximum dispersal distance (km)", y
     out$common_name<-cn
     out$fit<-dist
   }
-  return(out)
+  if(verbose==TRUE){return(out)}
 }
