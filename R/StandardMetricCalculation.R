@@ -183,4 +183,19 @@ write_csv(dispOTN, path="DispersalSummary_OTN.csv")
 write_csv(dailydispOTN, path="Daily_DispersalSummary_OTN.csv")
 
 
+###################################################
+## Calculate Velocity from IMOS pre-processed dataset
+
+library(data.table)
+library(lubridate)
+imos<-readRDS("~/Documents/GitHub/SharkRay-Movement/Data/Acoustic data/IMOS/ATToutput/imos_dispersal.rds")
+
+setkey(imos, tag_id)
+imos$detection_timestamp<-lubridate::ymd_hms(imos$detection_timestamp)
+imos<-imos[order(imos$detection_timestamp, imos$tag_id),]
+imm<-imos[ , Time.Since.Last.Detection.sec := c(NA, diff(detection_timestamp)), by = tag_id]
+imm$Velocity<-imm$discon/(imm$Time.Since.Last.Detection/3600)
+imo<-filter(imm, discon > 0)
+
+saveRDS(imo, file="imos_dispersal_withVelocity.rds")
 
