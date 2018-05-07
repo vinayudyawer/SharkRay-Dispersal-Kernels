@@ -15,7 +15,7 @@ displot<-function(data, cn, var="dis", xlab="Maximum dispersal distance (km)", y
       # normal distribution
       yfn<-dnorm(xfit,mean=mean(a),sd=sd(a));
       yfitn<-yfn
-      if(is.null(ylim)){yy<-range(0,max(yfitn[is.finite(yfitn)], na.rm=T),max(h$density, na.rm=T))}
+      if(is.null(ylim)){yy<-range(0,max(yfitn[is.finite(yfitn)], na.rm=T),max(h$density, na.rm=T))}else{yy=ylim}
       if(plotit){
         if(bars==TRUE){hist(a, breaks=breaks, freq=F, xaxt="n", las=1, main="", ylab=ylab, xlab=xlab, col=bar.col, border=bar.border, xlim=xlim, ylim=yy, ...)}
         else{hist(a, breaks=breaks, freq=F, xaxt="n", las=1, main="", ylab=ylab, xlab=xlab, col=NA, border=NA, xlim=xlim, ylim=yy, ...)}
@@ -28,7 +28,7 @@ displot<-function(data, cn, var="dis", xlab="Maximum dispersal distance (km)", y
       # gamma distribution
       yfg<-dgamma(xfit,shape=mean(a)^2/var(a),scale=var(a)/mean(a)); 
       yfitg<-yfg
-      if(is.null(ylim)){yy<-range(0,max(yfitg[is.finite(yfitg)], na.rm=T),max(h$density, na.rm=T))}
+      if(is.null(ylim)){yy<-range(0,max(yfitg[is.finite(yfitg)], na.rm=T),max(h$density, na.rm=T))}else{yy=ylim}
       if(plotit){
         if(bars==TRUE){hist(a, breaks=breaks, freq=F, xaxt="n", las=1, main="", ylab=ylab, xlab=xlab, col=bar.col, border=bar.border, xlim=xlim, ylim=yy, ...)}
         else{hist(a, breaks=breaks, freq=F, xaxt="n", las=1, main="", ylab=ylab, xlab=xlab, col=NA, border=NA, xlim=xlim, ylim=yy, ...)}
@@ -42,7 +42,7 @@ displot<-function(data, cn, var="dis", xlab="Maximum dispersal distance (km)", y
       # kernel distribution
       yfk<-density(a, n=1000, adjust=2)$y
       yfitk<-yfk
-      if(is.null(ylim)){yy<-range(0,max(yfitk[is.finite(yfitk)], na.rm=T),max(h$density, na.rm=T))}
+      if(is.null(ylim)){yy<-range(0,max(yfitk[is.finite(yfitk)], na.rm=T),max(h$density, na.rm=T))}else{yy=ylim}
       if(plotit){
         if(bars==TRUE){hist(a, breaks=breaks, freq=F, xaxt="n", las=1, main="", ylab=ylab, xlab=xlab, col=bar.col, border=bar.border, xlim=xlim, ylim=yy, ...)}
         else{hist(a, breaks=breaks, freq=F, xaxt="n", las=1, main="", ylab=ylab, xlab=xlab, col=NA, border=NA, xlim=xlim, ylim=yy, ...)}
@@ -54,7 +54,7 @@ displot<-function(data, cn, var="dis", xlab="Maximum dispersal distance (km)", y
     }
     if(plotit){
       box(bty="l")
-      if(lab){legend('topright', bty="n", pch=NA, col=NA, legend=cn, text.font=2, cex=1.2)}
+      if(lab){legend('topright', bty="n", pch=NA, col=NA, legend=cn, text.font=4, cex=1.2)}
       }
     }
   else {

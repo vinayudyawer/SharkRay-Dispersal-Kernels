@@ -147,7 +147,7 @@ for(i in 1:length(levels(as.factor(satt$common_name)))){
 
 sDisp$common_name<-c("Cetorhinus maximus", "Prionace glauca", "Alopias vulpinus",
                      "Mobula sp", "Carcharhinus galapagensis", "Somniosus microcephalus",
-                     "Carcharhinus amblyrhynchos", "Carcharodon carcharias", "Manta birostris",
+                     "Carcharhinus amblyrhynchos", "Carcharodon carcharias (j)", "Manta birostris",
                      "Carcharhinus longimanus","Lamna nasus","Lamna ditropis",
                      "Carcharias taurus", "Isurus oxyrinchus", "Carcharhinus falciformis",
                      "Carcharhinus albimarginatus", "Galeocerdo cuvier", "Rhincodon typus",
@@ -170,7 +170,7 @@ tab<-
   tidyr::spread(type, num) %>%
   data.frame()
 
-tab$group<-c(rep("shark",28), rep("ray",2),
+tab$group<-c(rep("shark",29), rep("ray",2),
              rep("shark",8), rep("ray",4),
              rep("shark",4), rep("ray",3),
              "shark","ray",
@@ -217,18 +217,45 @@ im<-imos_last %>%
   rename(vernacular = common_name,
          common_name = species)
 
+quartz(width=6, height=6.5)
 par(mfrow=c(3,1))
 displot(fish, cn=spp[1], var="dis", dist="gamma", plotit=T, lcol="coral3", lab=T, bars=F, xlab="")
-displot(im, cn=spp[1], var="disrel", dist="gamma", plotit=T, lcol="palegreen3", lab=F, bars=F, add=T , xlab="")
+displot(im, cn=spp[1], var="disrel", dist="gamma", plotit=T, lcol="palegreen3", lab=F, bars=F, add=T , xlab=""); axis(1, at=log(2.26+1), tck=1, label=F, lty=3, lwd=2)
 displot(fish, cn=spp[2], var="dis", dist="gamma", plotit=T, lcol="coral3", lab=T, bars=F, xlab="")
-displot(im, cn=spp[2], var="disrel", dist="gamma", plotit=T, lcol="palegreen3", lab=F, bars=F, add=T,  xlab="")
+displot(im, cn=spp[2], var="disrel", dist="gamma", plotit=T, lcol="palegreen3", lab=F, bars=F, add=T,  xlab=""); axis(1, at=log(2.26+1), tck=1, label=F, lty=3, lwd=2)
 displot(fish, cn=spp[3], var="dis", dist="gamma", plotit=T, lcol="coral3", lab=T, bars=F, xlab="Dispersal between tag release and final recapture (km)")
-displot(im, cn=spp[3], var="disrel", dist="gamma", plotit=T, lcol="palegreen3", lab=F, bars=F, add=T)
+displot(im, cn=spp[3], var="disrel", dist="gamma", plotit=T, lcol="palegreen3", lab=F, bars=F, add=T); axis(1, at=log(2.26+1), tck=1, label=F, lty=3, lwd=2)
+```
 
+```{r, eval=F}
+## Comparing between Passive Telemetry and Sat telemetry (Daily dispersal)
+spp<- c("Carcharodon carcharias","Prionace glauca","Carcharhinus amblyrhynchos")
+dailyotn<-as_tibble(read.csv("Data/Acoustic data/OTN/ATToutput/Daily_DispersalSummary_OTN.csv")) %>%
+  filter(common_name %in% "blue shark") %>% select(-mean.Daily.Velocity) %>% mutate(common_name ="Prionace glauca")
+imos_dispersal <- readRDS("~/Documents/GitHub/SharkRay-Movement/Data/Acoustic data/IMOS/ATToutput/imos_dispersal.rds")
+dailyimos<- as_tibble(imos_dispersal) %>%
+  filter(discon > 0 & species %in% spp) %>%
+  mutate(date=lubridate::date(lubridate::ymd_hms(detection_timestamp))) %>%
+  group_by(date, tag_id) %>%
+  summarize(Transmitter.Name = first(transmitter_id),
+            common_name = first(species),
+            Daily.Dispersal = sum(discon, na.rm=T)) %>%
+  rename(Tag.ID = tag_id) %>% ungroup()
 
+pass<-rbind(dailyotn, dailyimos)
+satt<-as_tibble(read.csv("Data/Satellite data/Dispersal Summaries/Daily_DispersalSummary_SatTags.csv")) %>% select(-mean.Daily.Velocity) %>% filter(common_name %in% c("Blue Shark", "White Shark", "Juvenile White Shark", "Grey Reef Shark")) %>% mutate(common_name = as.character(common_name))
+satt[satt$common_name%in%c("White Shark","Juvenile White Shark"),"common_name"]<-"Carcharodon carcharias"
+satt[satt$common_name%in%"Blue Shark","common_name"]<-"Prionace glauca"
+satt[satt$common_name%in%"Grey Reef Shark","common_name"]<-"Carcharhinus amblyrhynchos"
 
-
-
+quartz(width=6, height=6.5)
+par(mfrow=c(3,1))
+displot(pass, cn=spp[1], var="Daily.Dispersal", dist="gamma", plotit=T, lcol="palegreen3", lab=T, bars=F, xlab="")
+displot(satt, cn=spp[1], var="Daily.Dispersal", dist="gamma", plotit=T, lcol="steelblue3", lab=F, bars=F, add=T , xlab=""); axis(1, at=log(2.26+1), tck=1, label=F, lty=3, lwd=2)
+displot(pass, cn=spp[2], var="Daily.Dispersal", dist="gamma", plotit=T, lcol="palegreen3", lab=T, bars=F, xlab="", ylim=c(0,0.4))
+displot(satt, cn=spp[2], var="Daily.Dispersal", dist="gamma", plotit=T, lcol="steelblue3", lab=F, bars=F, add=T , xlab=""); axis(1, at=log(2.26+1), tck=1, label=F, lty=3, lwd=2)
+displot(pass, cn=spp[3], var="Daily.Dispersal", dist="gamma", plotit=T, lcol="palegreen3", lab=T, bars=F, xlab="Maximum Daily Dispersal (km)")
+displot(satt, cn=spp[3], var="Daily.Dispersal", dist="gamma", plotit=T, lcol="steelblue3", lab=F, bars=F, add=T , xlab=""); axis(1, at=log(2.26+1), tck=1, label=F, lty=3, lwd=2)
 
 
 ```
@@ -285,6 +312,76 @@ axis(1)
 
 
 # Cluster Analysis
+
+Since we passive telemetry is the largest dataset we will use that to conduct a cluster analysis
+
+```{r, eval = T}
+suppressPackageStartupMessages({
+  library(cluster)
+  library(factoextra)
+  library(NbClust)
+  library(dendextend)
+  library(circlize)
+  library(viridis)})
+
+## Data preperation (Species level)
+dat<-rbind(oDisp, aDisp)
+pp<-
+  dat %>%
+  filter(type %in% "pass") %>%
+  na.omit() %>%
+  data.frame()
+rownames(pp)<-pp$common_name
+scalepp<-scale(pp[,5:13])
+
+# ## individual level
+# pp<- as_tibble(imos_dispersal) %>%
+#   filter(discon > 0) %>%
+#   # mutate(date=lubridate::date(lubridate::ymd_hms(detection_timestamp))) %>%
+#   group_by(tag_id) %>%
+#   summarize(Transmitter.Name = first(transmitter_id),
+#             common_name = first(species),
+#             Max.Dispersal = max(discon, na.rm=T)) %>%
+#   ungroup() %>%
+#   data.frame()
+# rownames(pp)<-pp$tag_id
+# scalepp<-pp$Max.Dispersal
+
+## Identifying ideal number of clusters
+nb <- NbClust(scalepp, distance = "euclidean", min.nc = 2,
+        max.nc = 10, method = "ward.D")
+## 4 clusters (Species level)
+
+## Hierarchichal clustering
+ppHclust<-hclust(dist(scalepp, method = "euclidean"), method = "complete")
+# dend <- as.dendrogram(ppHclust)
+# dend <- dend %>% 
+#   color_branches(k=5) %>% 
+#   color_labels(k=5)
+# circlize_dendrogram(dend, labels_track_height = 0.1, dend_track_height = 0.85, cex=0.1)
+
+
+fviz_dend(ppHclust, k = 4, 
+          cex = 0.4,
+          k_colors = c("#2E9FDF", "#00AFBB", "#E7B800", "#FC4E07"),
+          color_labels_by_k = TRUE, 
+          rect = TRUE,
+          main=""
+          )
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
 
 
 
