@@ -6,32 +6,28 @@ library(phytools)
 library(MCMCglmm)
 
 #load data
-imos <- read.csv("Data/Acoustic data/IMOS/imos.merged.csv", header = T)
+act.sp <- read.csv("Data/ActivitySpace.Trait.csv", header = T)
 #markrecap <- read.csv("Data/2018-03-16_Fisheries.csv", header = T)
-
-#Convert movements to km^2 and mass to KG
-imos <- dplyr::mutate(imos, bbk95.km = bbk95/1000000,
-                            mcp.km = mcp/1000000,
-                            bbk50.km = bbk50/1000000,
-                            mass.kg = mass.g/1000)
 
 
 #Setting Colour scales and themes for plotting
-col.tribe <- scales::alpha(c("red", "green", "blue"), 0.5)
-names(col.tribe) <- levels(imos$tribe)
-col.tax <- scale_colour_manual(name = "tribe", values = col.tribe)
+col.subclass <- scales::alpha(c("red", "green", "blue"), 0.5)
+names(col.subclass) <- levels(act.sp$subclass)
+col.tax <- scale_colour_manual(name = "subclass", values = col.subclass)
 
 col.hab <- scales::alpha(c("red", "blue"), 0.5)
-names(col.hab) <- levels(imos$Habitat)
+names(col.hab) <- levels(act.sp$Habitat)
 col.habitat <- scale_colour_manual(name = "Habitat", values = col.hab)
 
 col.hab.new <- scales::alpha(c("red", "yellow", "blue", "green"), 0.5)
-names(col.hab.new) <- levels(imos$habitat.new)
+names(col.hab.new) <- levels(act.sp$habitat.new)
 col.habitat.new <- scale_colour_manual(name = "habitat.new", values = col.hab.new)
 
 col.trophic <- scales::alpha(c("blue", "royalblue", "skyblue", "navy"), 0.5)
-names(col.trophic) <- levels(imos$Trophic.group)
+names(col.trophic) <- levels(act.sp$Trophic.group)
 col.feed <- scale_colour_manual(name= "Trophic.group", values = col.trophic)
+
+#col.ecomorph
 
 #loading ggplot2 talk theme (transparent bkg with grey/white)
 source("R/Talk_theme_ggplot.R")

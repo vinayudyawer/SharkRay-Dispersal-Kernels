@@ -26,6 +26,7 @@ trait <- dplyr::select(trait, G.species, subclass, superorder, order, family, Ge
                        age.mat, max.age, k, #age/growth
                        bearing.mode, trophic.mode, repro.coarse, mode, interval, development, litter.size, #Reproductive traits
                        median, Red.List.status.new) #ED and threat status
+trait <- dplyr::left_join(trait, ecomorpho, "G.species")
 
 #write
 write.csv(trait, file = "Data/trait.data/trait.data.610.csv")
@@ -109,7 +110,9 @@ trait <- read.csv("Data/trait.data/trait.data.610.csv", header = T)
  
 merge <- left_join(dispersal, trait, "G.species") 
 
-plot(log10(merge$dis_max)~merge$Length_cm, col = as.factor(merge$habitat2))
+write.csv(merge, file = "Data/Dispersal.Trait.csv")
+
+plot(log10(merge$dis_max)~merge$Length_cm, col = as.factor(merge$superorder))
 summary(merge$Habitat)
 
 
@@ -123,11 +126,18 @@ summary(merge$Habitat)
 
 sat.as <- readRDS("Data/Satellite data/HR Summaries/MCParea_satelliteData.rds")
 
-sat.as$Overall
-sat.as$Subsetted
+imos.actsp <- dplyr::select(imos, scientific_name, Length_cm, body.mass.kg, sex, tag_id, tag_project_name, #Animal metadata 
+                                tag.type, num_det, days_det, num_stat, DI, ReleaseDate, release_latitude, release_longitude, days.at.liberty,#detection/location data 
+                                mcp, bbk50, bbk95, dis_min, dis_25, dis_50, dis_75, dis_max, dis_mean, dis_sd, #activity space/dispersal mertics
+                                Habitat, Trophic.group) #additional grouping data
 
+data.table::setnames(imos.actsp, c("scientific_name","num_stat"), c("G.species", "num_stations"))
+imos.actsp$G.species <- gsub(" ", "_", imos.actsp$G.species)
 
+#merge with trait data
+act.sp <- left_join(imos.actsp, trait, "G.species")
 
+write.csv(act.sp, file = "Data/ActivitySpace.Trait.csv")
 
 
 
