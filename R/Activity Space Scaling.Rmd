@@ -85,6 +85,16 @@ act.sp.mean<-act.sp %>%
                           ED = max(median.ED))
 ```
 
+Look at the size distribution within each species. To be more informative filter out all the species for which there are less than 10 tagged individuals. 
+
+```{r size.distribution}
+as.filt <- filter(act.sp, count>10, G.species !="Rhincodon_typus")
+ggplot(as.filt, aes(x=Length_cm)) +
+  geom_histogram(binwidth=10, aes(y=..density..),colour="black",fill="grey75") + 
+  geom_density(aes(y=..density..)) +
+  facet_wrap(~G.species, scales = "free_y")
+```
+
 
 ```{r activity space plot, echo=FALSE}
 AS.mean.plot <- ggplot(subset(act.sp.mean, !is.na(mcp)), aes(body.mass, mcp)) + 
