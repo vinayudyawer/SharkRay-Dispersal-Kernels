@@ -5,9 +5,95 @@ date: "May 2, 2018"
 output: html_document
 ---
 
+#Scaling of Movement Metrics
+
 ```{r load packages, echo=FALSE}
 library(tidyverse)
 library(phytools)
 library(MCMCglmm)
+library(diversitree)
+```
+
+##Data Exploration and Summary
+
+```{r load activity space data and tree and color scales, echo=FALSE}
+#load data
+act.sp <- read.csv("Data/ActivitySpace.Trait.csv", header = T)
+#markrecap <- read.csv("Data/2018-03-16_Fisheries.csv", header = T)
+
+#Generate activity space in square kilometers and mass estimates for life stages
+act.sp <- act.sp %>%
+  mutate(mcp.km = mcp/1000000,
+         mass.mat = (size.at.mat^length.weight.b)*length.weight.a,
+         max.mass = (max.size^length.weight.b)*length.weight.a,
+         pup.mass = (pup.size^length.weight.b)*length.weight.a) %>%
+  group_by(G.species) %>% mutate(count = n()) #add a count column to filter out species with less than 10 individuals tagged
+
+#Setting Colour scales and themes for plotting
+col.subclass <- scales::alpha(c("red", "green", "blue"), 0.5)
+names(col.subclass) <- levels(act.sp$subclass)
+col.tax <- scale_colour_manual(name = "subclass", values = col.subclass)
+
+col.hab <- scales::alpha(c("red", "blue"), 0.5)
+names(col.hab) <- levels(act.sp$Habitat)
+col.habitat <- scale_colour_manual(name = "Habitat", values = col.hab)
+
+col.hab.new <- scales::alpha(c("red", "yellow", "blue", "green"), 0.5)
+names(col.hab.new) <- levels(act.sp.mean$habitat)
+col.habitat.new <- scale_colour_manual(name = "habitat.new", values = col.hab.new)
+
+col.trophic <- scales::alpha(c("blue", "royalblue", "skyblue", "navy"), 0.5)
+names(col.trophic) <- levels(act.sp$Trophic.group)
+col.feed <- scale_colour_manual(name= "Trophic.group", values = col.trophic)
+
+#col.ecomorph
+
+#loading ggplot2 talk theme (transparent bkg with grey/white)
+source("R/Talk_theme_ggplot.R")
+
+#load tree
+tree <- read.nexus("Data/trees/10cal.tree250.nex")
+```
+
+###Plots
+
+```{r species mean activity space, echo=FALSE}
+act.sp.mean<-act.sp %>%
+                group_by(G.species) %>%
+                summarise(n = length(mcp),
+                          mcp = mean(na.exclude(mcp)),
+                          bbk50 = mean(na.exclude(bbk50)),
+                          bbk90 = mean(na.exclude(bbk95)),
+                          days_det = mean(days_det),
+                          dis_max = mean(na.exclude(dis_max)),
+                          TL.mean = mean(na.omit(Length_cm)),
+                          body.mass = mean(na.omit(body.mass.kg)),
+                          Habitat = first(habitat),
+                          range.depth = max(range.depth),
+                          range.lat = max(range.lat),
+                          area = max(area),
+                          Trophic.group = first(Trophic.group),
+                          size.at.mat = max(size.at.mat),
+                          max.size = max(max.size),
+                          k = max(k),
+                          age.mat = max(age.mat),
+                          max.age = max(max.age),
+                          bearing.mode = first(bearing.mode),
+                          breeding.interval = max(breeding.interval),
+                          ecomorphotype = first(ecomorphotype),
+                          Red.List = first(Red.List.status.new),
+                          ED = max(median.ED))
+```
+
+
+```{r activity space plot, echo=FALSE}
+AS.mean.plot <- ggplot(subset(act.sp.mean, !is.na(mcp)), aes(body.mass, mcp)) + 
+  geom_point(size=7.5, color = scales::alpha('grey50', 0.5)) +
+  scale_x_log10() +
+  scale_y_log10() +
+  annotation_logticks(colour = "grey50") +
+  geom_smooth(method = lm) +
+  theme_talk()
+AS.mean.plot
 ```
 
