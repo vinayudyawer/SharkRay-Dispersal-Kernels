@@ -8,6 +8,7 @@ displot<-function(data, cn, var="dis", xlab="Maximum dispersal distance (km)", y
   dat<-data.frame(filter(data, common_name%in%cn))
   if(nrow(dat)>3){
     a<-log(dat[dat[,var]>0,var]+1)
+    # a<-log(dat$var+1)
     xfit<-seq(0,max(a),length=1000)
     par(mar=mar)
     h<-hist(a, plot=F, breaks=breaks, ...)
