@@ -23,7 +23,7 @@ displot<-function(data, cn, var="dis", xlab="Maximum dispersal distance (km)", y
         axis(1, at= log(c(0.01, seq(0.1,1,l=10), seq(1,10,l=10),seq(10,100,l=10), seq(100,1000,l=10), seq(1000,10000,l=10))+1), labels=F, tcl=-0.3)
         axis(1, at= log(c(0.1,1,10,100,1000,10000)+1), labels=c(0.1,1,10,100,1000,10000))
         lines(xfit, yfitn, col=lcol, lwd=2)}
-      out<-data.frame(common_name=cn, fit="normal", mean = mean(dat[dat[,var]>0,var]), sd=sd(dat[dat[,var]>0,var]), shape=NA, scale=NA, q=t(stats::quantile(dat[dat[,var]>0,var], probs=quants)))
+      out<-data.frame(common_name=cn, fit="normal", median = median(dat[dat[,var]>0,var]), mean = mean(dat[dat[,var]>0,var]), sd=sd(dat[dat[,var]>0,var]), shape=NA, scale=NA, q=t(stats::quantile(dat[dat[,var]>0,var], probs=quants)))
     }
     if(dist=="gamma"){
       # gamma distribution
@@ -37,7 +37,7 @@ displot<-function(data, cn, var="dis", xlab="Maximum dispersal distance (km)", y
         axis(1, at= log(c(0.1,1,10,100,1000,10000)+1), labels=c(0.1,1,10,100,1000,10000))
         lines(xfit, yfitg, col=lcol, lwd=2)
       }
-      out<-data.frame(common_name=cn, fit="gamma", mean = mean(dat[dat[,var]>0,var]), sd=sd(dat[dat[,var]>0,var]), shape=mean(a)^2/var(a), scale=var(a)/mean(a), q=t(stats::quantile(dat[dat[,var]>0,var], probs=quants)))
+      out<-data.frame(common_name=cn, fit="gamma", median = median(dat[dat[,var]>0,var]), mean = mean(dat[dat[,var]>0,var]), sd=sd(dat[dat[,var]>0,var]), shape=mean(a)^2/var(a), scale=var(a)/mean(a), q=t(stats::quantile(dat[dat[,var]>0,var], probs=quants)))
     }
     if(dist=="kernel"){
       # kernel distribution
@@ -51,7 +51,7 @@ displot<-function(data, cn, var="dis", xlab="Maximum dispersal distance (km)", y
         axis(1, at= log(c(0.1,1,10,100,1000,10000)+1), labels=c(0.1,1,10,100,1000,10000))
         lines(xfit, yfitk, col=lcol, lwd=2)
       }
-      out<-data.frame(common_name=cn, fit="kernel", mean = mean(dat[dat[,var]>0,var]), sd=sd(dat[dat[,var]>0,var]), shape=NA, scale=NA, q=t(stats::quantile(dat[dat[,var]>0,var], probs=quants)))
+      out<-data.frame(common_name=cn, fit="kernel", median = median(dat[dat[,var]>0,var]), mean = mean(dat[dat[,var]>0,var]), sd=sd(dat[dat[,var]>0,var]), shape=NA, scale=NA, q=t(stats::quantile(dat[dat[,var]>0,var], probs=quants)))
     }
     if(plotit){
       box(bty="l")
