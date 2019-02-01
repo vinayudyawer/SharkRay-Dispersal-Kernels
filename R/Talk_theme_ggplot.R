@@ -6,6 +6,7 @@ theme_talk <- function() {
           legend.background = element_blank(),
           panel.grid = element_blank(),
           title = element_blank(),
-          legend.position = "none"
+          legend.position = "none",
+          axis.text = element_text(size = 12)
           )
 }

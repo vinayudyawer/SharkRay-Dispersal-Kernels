@@ -5,9 +5,9 @@ date: "May 2, 2018"
 output: html_document
 ---
 
-#Scaling of Movement Metrics
+#Scaling of Shark and Ray Movement Metrics
 
-```{r load packages, echo=FALSE}
+```{r load packages, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(phytools)
 library(MCMCglmm)
@@ -15,8 +15,11 @@ library(diversitree)
 ```
 
 ##Data Exploration and Summary
+Currently this is working with the IMOS acoustic tracking data and the measures of cumulative activity space for each individual. We will be looking at AS for all individuals, the distribution across size classes, and the species means.
 
-```{r load activity space data and tree and color scales, echo=FALSE}
+```{r load activity space data and tree and color scales, echo=FALSE, message=FALSE, warning=FALSE}
+#for some reason knitr needs me to set the working directory now
+setwd("/Users/cmull/Dropbox/Work/Postdoc SFU/Data and Analysis/R")
 #load data
 act.sp <- read.csv("Data/ActivitySpace.Trait.csv", header = T)
 #markrecap <- read.csv("Data/2018-03-16_Fisheries.csv", header = T)
@@ -39,36 +42,46 @@ names(col.hab) <- levels(act.sp$Habitat)
 col.habitat <- scale_colour_manual(name = "Habitat", values = col.hab)
 
 col.hab.new <- scales::alpha(c("red", "yellow", "blue", "green"), 0.5)
-names(col.hab.new) <- levels(act.sp.mean$habitat)
+names(col.hab.new) <- levels(act.sp$habitat)
 col.habitat.new <- scale_colour_manual(name = "habitat.new", values = col.hab.new)
 
 col.trophic <- scales::alpha(c("blue", "royalblue", "skyblue", "navy"), 0.5)
 names(col.trophic) <- levels(act.sp$Trophic.group)
 col.feed <- scale_colour_manual(name= "Trophic.group", values = col.trophic)
 
-#col.ecomorph
+col.lifestyle <- scales::alpha(c("red","blue"), 0.5)
+names(col.lifestyle) <- levels(act.sp$lifestyle)
+col.life <- scale_colour_manual(name="lifestyle", values = col.lifestyle)
+
+col.ecomorph.life <- scales::alpha(c("darkblue", "yellow", "darkgreen", "lightgreen", "lightblue", "darkred", "red"), 0.75)
+names(col.ecomorph.life) <- levels(act.sp$ecomorph.life)
+col.ecolife <- scale_colour_manual(name="ecomorph.life", values = col.ecomorph.life)
 
 #loading ggplot2 talk theme (transparent bkg with grey/white)
 source("R/Talk_theme_ggplot.R")
+source("R/Paper_theme_ggplot.R")
 
 #load tree
 tree <- read.nexus("Data/trees/10cal.tree250.nex")
 ```
 
-###Plots
-
-```{r species mean activity space, echo=FALSE}
+```{r species mean activity space, echo=FALSE, message=FALSE, warning=FALSE}
+#generate species means for each variable. For values that are all the same (e.g. taxonomy) use first() to grab the first value. For continuous values (e.g. mcp) use na.exclude() otherwise NAs will cause it to fail.
 act.sp.mean<-act.sp %>%
                 group_by(G.species) %>%
-                summarise(n = length(mcp),
+                summarise(species.id = first(G.species),
+                          n = length(mcp),
+                          subclass = first (subclass),
+                          order = first(order),
                           mcp = mean(na.exclude(mcp)),
+                          mcp.km = mean(na.exclude(mcp.km)),
                           bbk50 = mean(na.exclude(bbk50)),
                           bbk90 = mean(na.exclude(bbk95)),
                           days_det = mean(days_det),
                           dis_max = mean(na.exclude(dis_max)),
                           TL.mean = mean(na.omit(Length_cm)),
                           body.mass = mean(na.omit(body.mass.kg)),
-                          Habitat = first(habitat),
+                          habitat = first(habitat),
                           range.depth = max(range.depth),
                           range.lat = max(range.lat),
                           area = max(area),
@@ -81,29 +94,287 @@ act.sp.mean<-act.sp %>%
                           bearing.mode = first(bearing.mode),
                           breeding.interval = max(breeding.interval),
                           ecomorphotype = first(ecomorphotype),
+                          lifestyle = first(lifestyle),
+                          ecomorph.life = first(ecomorph.life),
                           Red.List = first(Red.List.status.new),
                           ED = max(median.ED))
-```
 
-Look at the size distribution within each species. To be more informative filter out all the species for which there are less than 10 tagged individuals. 
-
-```{r size.distribution}
-as.filt <- filter(act.sp, count>10, G.species !="Rhincodon_typus")
-ggplot(as.filt, aes(x=Length_cm)) +
-  geom_histogram(binwidth=10, aes(y=..density..),colour="black",fill="grey75") + 
-  geom_density(aes(y=..density..)) +
-  facet_wrap(~G.species, scales = "free_y")
+act.sp.mean <- filter(act.sp.mean, !is.na(mcp.km)) #Just to clean up the dataframe for future plotting.
+act.sp.mean <- filter(act.sp.mean, !is.na(body.mass))
 ```
 
 
-```{r activity space plot, echo=FALSE}
-AS.mean.plot <- ggplot(subset(act.sp.mean, !is.na(mcp)), aes(body.mass, mcp)) + 
-  geom_point(size=7.5, color = scales::alpha('grey50', 0.5)) +
+###Exploratory Plots
+First will be data summaries. Look at the size distribution within each species. 
+
+####Mean AS scaling between species
+```{r mean activity space plot, echo=FALSE, fig.height=10, fig.width=10, message=FALSE, warning=FALSE}
+AS.mean.plot <- ggplot(subset(act.sp.mean, !is.na(mcp.km)), aes(body.mass, mcp.km)) + 
+  geom_point(size=5, color = scales::alpha('grey50', 0.5)) +
   scale_x_log10() +
-  scale_y_log10() +
+  scale_y_log10(labels = function(x) format(x, scientific = FALSE)) +
+  annotation_logticks(colour = "grey50") +
+  geom_smooth(method = lm, colour = "grey80") + 
+  theme_talk() #NOTE to change things like text size in the plot you need to change the theme file and then reload
+AS.mean.plot
+
+pdf("Plots/mean.actsp.scaling.pdf", width = 10, height = 8)
+AS.mean.plot
+dev.off()
+```
+
+```{r mean activity space plot by lifestyle, echo=FALSE, fig.height=10, fig.width=10, message=FALSE, warning=FALSE}
+AS.mean.life.plot <- ggplot(subset(act.sp.mean, !is.na(mcp.km)), aes(body.mass, mcp.km, colour=lifestyle)) + 
+  geom_point(size=5) +
+  scale_x_log10() +
+  scale_y_log10(labels = function(x) format(x, scientific = FALSE)) +
+  annotation_logticks(colour = "grey50") +
+  col.life +
+  geom_smooth(method = lm, aes(fill=lifestyle)) +
+  theme_talk()
+AS.mean.life.plot
+
+pdf("Plots/AS.mean.lifstyle.pdf", width = 10, height = 8)
+AS.mean.life.plot
+dev.off()
+```
+
+```{r mean activity space plot by taxonomy, echo=FALSE, fig.height=10, fig.width=10, message=FALSE, warning=FALSE}
+AS.mean.tax.plot <- ggplot(subset(act.sp.mean, !is.na(mcp.km)), aes(body.mass, mcp.km, colour = subclass)) + 
+  geom_point(aes(size=5)) +
+  col.tax +
+  scale_x_log10() +
+  scale_y_log10(labels = function(x) format(x, scientific = FALSE)) +
+  annotation_logticks(colour = "grey50") +
+  geom_smooth(method = lm, aes(fill=subclass)) +
+  theme_talk()
+AS.mean.tax.plot
+
+pdf("Plots/AS.mean.subclass.plot.pdf", width = 10, height = 8)
+AS.mean.tax.plot
+dev.off()
+```
+
+```{r mean activity space plot by trophic group, echo=FALSE, fig.height=10, fig.width=10, message=FALSE, warning=FALSE}
+AS.mean.trophic.plot <- ggplot(subset(act.sp.mean, !is.na(mcp.km)), aes(body.mass, mcp.km, colour = Trophic.group)) + 
+  geom_point(aes(size=10)) +
+  scale_x_log10() +
+  scale_y_log10(labels = function(x) format(x, scientific = FALSE)) +
+  col.feed +
   annotation_logticks(colour = "grey50") +
   geom_smooth(method = lm) +
   theme_talk()
-AS.mean.plot
+AS.mean.trophic.plot
+
+pdf("Plots/AS.mean.Trophic.plot.pdf", width = 10, height = 8)
+AS.mean.trophic.plot
+dev.off()
+```
+
+```{r multiplanel plot for the species means plotsecho=FALSE, fig.height=10, fig.width=10, message=FALSE, warning=FALSE}
+#This is a simple mulipanel plot for SCF reporting purposes. Not paper figure quality...
+Rmisc::multiplot(AS.mean.plot, AS.mean.tax.plot, AS.mean.life.plot, AS.mean.trophic.plot, cols = 2)
+```
+
+####Individual AS within species
+
+To be more informative filter out all the species for which there are less than 10 tagged individuals. Vertical lines represent size at birth, maturity, and maximum size.
+
+```{r size.distribution, echo=FALSE, fig.height=10, fig.width=10, message=FALSE, warning=FALSE}
+as.filt <- filter(act.sp, count>10, G.species !="Rhincodon_typus")
+tag.size.dist <- ggplot(as.filt, aes(x=Length_cm)) +
+  geom_histogram(binwidth=10, aes(y=..density..),colour="black",fill="grey75") + 
+  geom_density(aes(y=..density..)) +
+  geom_vline(aes(xintercept = pup.size), linetype=2, color = "red") +
+  geom_vline(aes(xintercept = size.at.mat), linetype=2, color = "grey50") +
+  geom_vline(aes(xintercept = max.size), linetype=2, color = "red") +
+  facet_wrap(~G.species, scales = "free_y") #+
+  #theme_talk()
+
+tag.size.dist
+
+pdf("Plots/tag.size.dist.pdf", width = 12, height = 10)
+tag.size.dist
+dev.off()
+
+```
+
+Look at the distribution of activity space across species. This will need to be fixed to generate Activity Space Kernels...similar to Vinay's dispersal kernel work.
+
+#```{r activity.space.distribution, echo=FALSE, fig.height=10, fig.width=10, message=FALSE, warning=FALSE}
+#ggplot(subset(as.filt, !is.na(mcp.km)), aes(x=mcp.km)) +
+#  geom_histogram(binwidth=100, aes(y=..density..),colour="black",fill="grey75") + 
+#  geom_density(aes(y=..density..)) +
+#  facet_wrap(~G.species, scales = "free_y")
+#```
+
+Look at AS scaling witin each species
+```{r}
+facet.AS.scaling <- ggplot(subset(as.filt, !is.na(mcp.km)), aes(body.mass.kg, mcp.km, colour = ecomorph.life)) +
+  geom_point(size=2.5, color = scales::alpha('grey50', 0.5)) +
+  #col.ecolife +
+  scale_x_log10() +
+  scale_y_log10() +
+  annotation_logticks(colour = "grey50") +
+  #geom_smooth(method=lm, se=F) +
+  facet_wrap(~G.species) #+
+  #theme_talk()
+facet.AS.scaling
+
+pdf("Plots/facet.AS.pdf", width = 12, height = 8)
+facet.AS.scaling
+dev.off()
+
+```
+
+
+```{r individual activity space by lifestyle, echo=FALSE, fig.height=10, fig.width=10, message=F, warning=FALSE}
+AS.life.plot <- ggplot(subset(act.sp, !is.na(mcp.km)), aes(body.mass.kg, mcp.km, colour=lifestyle)) + 
+  geom_point(size=7.5) +
+  scale_x_log10() +
+  scale_y_log10() +
+  annotation_logticks(colour = "grey50") +
+  col.life +
+  geom_smooth(method = lm, aes(fill=lifestyle)) +
+  theme_talk()
+AS.life.plot
+
+pdf("Plots/AS.lifstyle.pdf", width = 10, height = 8)
+AS.life.plot
+dev.off()
+```
+
+```{r dispersal distance saturation plot, echo=FALSE}
+
+plot(log10(disp$dis_max)~disp$days.at.liberty, col=as.factor(disp$tag.type))
+
+disp <- read.csv("Data/Dispersal.Trait.csv", header = T)
+
+col.tag <- scales::alpha(c("red", "green", "blue"), 0.5)
+names(col.tag) <- levels(disp$tag.type)
+color.tag <- scale_colour_manual(name = "tag.type", values = col.tag)
+
+disp <- filter(disp, days.at.liberty>0)
+
+Disp.plot <- ggplot(subset(disp, !is.na(dis_max)), aes(days.at.liberty, dis_max, colour = tag.type)) + 
+  geom_point(aes(size=10)) +
+  #scale_x_log10() +
+  scale_y_log10(labels = function(x) format(x, scientific = FALSE)) +
+  color.tag +
+  theme_talk()
+Disp.plot
+
+pdf("Plots/dispersal.time.pdf", width = 10, height = 8)
+Disp.plot
+dev.off()
+```
+
+```{r plot by ecomorpholife, echo=FALSE}
+
+```
+
+```{r example species plots, echo=FALSE, fig.height=10, fig.width=10, message=FALSE, warning=FALSE}
+#subset Carcharhinus amblyrhynchos which doesn't show strong scaling
+Cambly <- filter(act.sp, G.species == "Carcharhinus_amblyrhynchos", Length_cm>0)
+
+AS.Cambly <- ggplot(subset(Cambly, !is.na(mcp.km)), aes(body.mass.kg, mcp.km)) + 
+  geom_point(size=7.5, color = scales::alpha('grey50', 0.5)) +
+  scale_x_log10() +
+  scale_y_log10() + #labels = function(x) format(x, scientific = FALSE)) +
+  annotation_logticks(colour = "grey50") +
+  geom_smooth(method = lm, colour="grey80") +
+  theme_talk()
+AS.Cambly
+
+pdf("Plots/C.amblyrhynchos.scaling.pdf", width = 10, height = 8)
+AS.Cambly
+dev.off()
+
+#subset Negaprion acutidens which shows clear scaling
+Negaprion <- filter(act.sp, G.species == "Negaprion_acutidens", Length_cm>0)
+
+AS.Negaprion <- ggplot(subset(Negaprion, !is.na(mcp.km)), aes(body.mass.kg, mcp.km)) + 
+  geom_point(size=7.5, color = scales::alpha('grey50', 0.5)) +
+  scale_x_log10() +
+  scale_y_log10() + #labels = function(x) format(x, scientific = FALSE)) +
+  annotation_logticks(colour = "grey50") +
+  geom_smooth(method = lm, colour="grey80") +
+  theme_talk()
+AS.Negaprion
+
+pdf("Plots/N.acutidens.scaling.pdf", width = 10, height = 8)
+AS.Negaprion
+dev.off()
+
+#Carcharhinus melanopterus
+Melanopterus <- filter(act.sp, G.species == "Carcharhinus_melanopterus", Length_cm>0)
+
+AS.Melanopterus <- ggplot(subset(Melanopterus, !is.na(mcp.km)), aes(body.mass.kg, mcp.km)) + 
+  geom_point(size=7.5, color = scales::alpha('grey50', 0.5)) +
+  scale_x_log10() +
+  scale_y_log10() + #labels = function(x) format(x, scientific = FALSE)) +
+  annotation_logticks(colour = "grey50") +
+  geom_smooth(method = lm, colour="grey80") +
+  theme_talk()
+AS.Melanopterus
+
+pdf("Plots/C.melanopterus.scaling.pdf", width = 10, height = 8)
+AS.Melanopterus
+dev.off()
+
+```
+
+
+```{r}
+AS.mean.model <- glm(log10(mcp.km)~log10(body.mass) + lifestyle + Trophic.group + subclass, data = act.sp.mean)
+summary(AS.mean.model)
+
+#with phylogenetic correction
+dat.phy <- treeplyr::make.treedata(tree, act.sp.mean, name_column = "G.species")
+
+mean.tree <- dat.phy$phy
+mean.dat <- dat.phy$dat
+
+library(nlme)
+
+AS.mean.phy <- gls(log10(mcp.km)~log10(body.mass) + lifestyle + Trophic.group + subclass, data = act.sp.mean, correlation = corPagel(1,mean.tree), method = "ML")
+```
+
+
+## Testing analzying with the brms package
+
+```{r}
+library(brms)
+
+#Match up the mean activity space dataset and the phylogeny
+dat.phy <- treeplyr::make.treedata(tree, act.sp.mean, name_column = "G.species")
+
+mean.tree <- dat.phy$phy
+mean.dat <- dat.phy$dat
+
+#create the covariance matrix for adding to the phylogenetic mixed model
+inv.phylo <- MCMCglmm::inverseA(mean.tree, nodes = "TIPS", scale = TRUE)
+A <- solve(inv.phylo$Ainv)
+rownames(A) <- rownames(inv.phylo$Ainv)
+
+#run a simple model looking at body mass over scaling
+actsp_simple <- brm(
+  log10(body.mass) ~ log10(mcp.km) + (1|species.id), data = mean.dat, 
+  family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
+  prior = c(
+    prior(normal(0, 10), "b"),
+    prior(normal(0, 50), "Intercept"),
+    prior(student_t(3, 0, 20), "sd"),
+    prior(student_t(3, 0, 20), "sigma")
+  )
+)
+```
+
+Check out the summary and output of the simple bayesian model
+
+```{r}
+summary(actsp_simple)
+plot(actsp_simple, N = 2, ask = FALSE)
+plot(marginal_effects(actsp_simple), points = TRUE) 
 ```
 

@@ -6,8 +6,8 @@ library(magrittr)
 library(dplyr)
 library(lubridate)
 
-#Merging trait data sets
-########################
+#Merging trait data sets on 01/15/2019 
+######################################
 
 #1. Merge latitude and ED data by IUCN-name (lat data is only in IUCN name, but ED has correct names)
 lat <- read.csv("Data/trait.data/lat.csv", header = T)
@@ -15,21 +15,68 @@ ed <- read.csv("Data/trait.data/ED.score.csv", header = T)
 
 ed.lat <- dplyr::left_join(ed, lat, "IUCN_Scientific_name")
 ed.lat$G.species <- ed.lat$EDGE_Scientific_name
+#save a copy of this merged file. NOTE - Genus Manta updated to Mobula
+#write.csv(ed.lat, file = "Data/trait.data/ED.range-data.csv")
+ed.lat <- read.csv("Data/trait.data/ED.range-data.csv", header = T)
 
-#2. Merge ed.lat data with 610 species trait data
-trait.610 <- read.csv("Data/trait.data/610sp.trait.data.csv", header = T)
 
-trait <- dplyr::left_join(trait.610, ed.lat, "G.species")
-trait <- dplyr::select(trait, G.species, subclass, superorder, order, family, Genus, species, IUCN_Scientific_name, #taxonomy
-                       size.at.mat, max.size, pup.size, length.weight.a, length.weight.b, #size.traits
-                       habitat, habitat2, mindepth_m, maxdepth_m, mediandepth_m, depthrange_m, mi.lat, max.lat, lat.range, area.x, #habitat/range
-                       age.mat, max.age, k, #age/growth
-                       bearing.mode, trophic.mode, repro.coarse, mode, interval, development, litter.size, #Reproductive traits
-                       median, Red.List.status.new) #ED and threat status
-trait <- dplyr::left_join(trait, ecomorpho, "G.species")
+#2. Merge ed.lat data with species trait data 
+# NOTE this has been updated from the 610 species list to include a few species in the movement dataset
+# that are not in the molecular tree. Currently it has 615 species. 
+#trait.data <- read.csv("Data/trait.data/trait.data.csv", header = T)
+
+#trait <- dplyr::left_join(trait.data, ed.lat, "G.species")
+#trait <- dplyr::select(trait, G.species, subclass, superorder, order, family, Genus, species, IUCN_Scientific_name, #taxonomy
+#                       size.at.mat, max.size, pup.size, length.weight.a, length.weight.b, #size.traits
+#                       habitat, habitat2, mindepth_m, maxdepth_m, mediandepth_m, depthrange_m, mi.lat, max.lat, lat.range, area.x, #habitat/range
+#                       age.mat, max.age, k, #age/growth
+#                       bearing.mode, trophic.mode, repro.coarse, mode, interval, development, litter.size, #Reproductive traits
+#                       median, Red.List.status.new) #ED and threat status
+
 
 #write
-write.csv(trait, file = "Data/trait.data/trait.data.610.csv")
+#write.csv(trait, file = "Data/trait.data/trait.data.610.csv")
+
+# Now the trait data file has been updated (name changes and drops and a new file "Data/trait.data/full.trait.data.csv")
+# The current name is species.ID, with recent taxonomic revisions tracked, and spceis authorship included.
+# Need to make sure that the taxonomic updates are incorporated in the tree and dataset, and then it is trimmed to the dataset
+# for movement analysis.
+
+# Covert fully resolved trees to 99 species.
+library(phytools) #for tree stuff 
+library(phylotools) #for ::sub.taxa.label()
+
+#load a distribution of fully resolved trees (NOTE: TD_ has been removed from taxonomy species)
+full.trees <- read.nexus("Data/trees/100.full.trees.nex")
+
+#load the species name changes file
+name.changes <- read.csv("Data/trees/name.changes.csv", header=F)
+
+#Movement data species list
+mvmt.species <- read.csv("../../../../Movement data/SpeciesSummary_byTagType.csv", header = T)
+
+# First apply all of the name changes to the full tree
+trees <- lapply(full.trees, sub.taxa.label, name.changes)
+class(trees) <- "multiPhylo"
+write.tree(trees, file = "Data/trees/100.full.trees.names.changed.tre")
+
+# Create a new column in the species summary file with the most current names (6 names changed...see the .csv file SpeciesSummary_byTagType)
+# Trim the tree full trees to the mvmt dataset...
+# Create a drop list of species in the tree that are not in the movement data set
+  drop.list <- setdiff(trees[[1]]$tip.label, mvmt.species$new.species.ID)
+
+# drop this list from all of the trees in the distribution
+  mvmt.trees <- lapply(trees, drop.tip, drop.list)
+  plot(mvmt.trees[[1]], cex =0.5)
+  write.tree(mvmt.trees, file = "Data/trees/100.Movement.Trees.names.updated.tre")
+
+# Create a consensus tree - single tree for running analyses on..
+  single.tree <- consensus(mvmt.trees, p=0.5)
+  ss.d<-colSums(as.matrix(RF.dist(mvmt.trees))^2)
+  ii<-which(ss.d==min(ss.d))
+  ss.d[ii]
+
+#load the large trait dataset
 
 
 
