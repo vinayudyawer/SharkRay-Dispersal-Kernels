@@ -11,7 +11,9 @@ output: html_document
 library(tidyverse)
 library(phytools)
 library(MCMCglmm)
+library(brms)
 library(diversitree)
+library(treeplyr)
 ```
 
 ##Data Exploration and Summary
@@ -346,6 +348,8 @@ AS.mean.phy <- gls(log10(mcp.km)~log10(body.mass) + lifestyle + Trophic.group + 
 ```{r}
 library(brms)
 
+#To examine the full Activity Space dataset we will need to perform a repeated measures pGLMM model. 
+
 #Match up the mean activity space dataset and the phylogeny
 dat.phy <- treeplyr::make.treedata(tree, act.sp.mean, name_column = "G.species")
 
@@ -357,10 +361,12 @@ inv.phylo <- MCMCglmm::inverseA(mean.tree, nodes = "TIPS", scale = TRUE)
 A <- solve(inv.phylo$Ainv)
 rownames(A) <- rownames(inv.phylo$Ainv)
 
+A <- ape::vcv.phylo(mean.tree)
+
 #run a simple model looking at body mass over scaling
-actsp_simple <- brm(
-  log10(body.mass) ~ log10(mcp.km) + (1|species.id), data = mean.dat, 
-  family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
+actsp_trophic <- brm(
+  log10(body.mass) ~ log10(mcp.km) + Trophic.group + (1|species.id), data = mean.dat, 
+  family = gaussian(), cov_ranef = list(phylo = A), iter = 100000,
   prior = c(
     prior(normal(0, 10), "b"),
     prior(normal(0, 50), "Intercept"),
@@ -368,6 +374,7 @@ actsp_simple <- brm(
     prior(student_t(3, 0, 20), "sigma")
   )
 )
+
 ```
 
 Check out the summary and output of the simple bayesian model
