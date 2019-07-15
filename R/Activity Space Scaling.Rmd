@@ -16,12 +16,12 @@ library(diversitree)
 library(treeplyr)
 ```
 
-##Data Exploration and Summary
+##Data Loading and Summary
 Currently this is working with the IMOS acoustic tracking data and the measures of cumulative activity space for each individual. We will be looking at AS for all individuals, the distribution across size classes, and the species means.
 
 ```{r load activity space data and tree and color scales, echo=FALSE, message=FALSE, warning=FALSE}
 #for some reason knitr needs me to set the working directory now
-setwd("/Users/cmull/Dropbox/Work/Postdoc SFU/Data and Analysis/R")
+#setwd("/Users/cmull/Dropbox/Work/Postdoc SFU/Data and Analysis/R") #THIS ONLY NEEDS TO BE RUN WHEN KNITTING
 #load data
 act.sp <- read.csv("Data/ActivitySpace.Trait.csv", header = T)
 #markrecap <- read.csv("Data/2018-03-16_Fisheries.csv", header = T)
@@ -33,35 +33,6 @@ act.sp <- act.sp %>%
          max.mass = (max.size^length.weight.b)*length.weight.a,
          pup.mass = (pup.size^length.weight.b)*length.weight.a) %>%
   group_by(G.species) %>% mutate(count = n()) #add a count column to filter out species with less than 10 individuals tagged
-
-#Setting Colour scales and themes for plotting
-col.subclass <- scales::alpha(c("red", "green", "blue"), 0.5)
-names(col.subclass) <- levels(act.sp$subclass)
-col.tax <- scale_colour_manual(name = "subclass", values = col.subclass)
-
-col.hab <- scales::alpha(c("red", "blue"), 0.5)
-names(col.hab) <- levels(act.sp$Habitat)
-col.habitat <- scale_colour_manual(name = "Habitat", values = col.hab)
-
-col.hab.new <- scales::alpha(c("red", "yellow", "blue", "green"), 0.5)
-names(col.hab.new) <- levels(act.sp$habitat)
-col.habitat.new <- scale_colour_manual(name = "habitat.new", values = col.hab.new)
-
-col.trophic <- scales::alpha(c("blue", "royalblue", "skyblue", "navy"), 0.5)
-names(col.trophic) <- levels(act.sp$Trophic.group)
-col.feed <- scale_colour_manual(name= "Trophic.group", values = col.trophic)
-
-col.lifestyle <- scales::alpha(c("red","blue"), 0.5)
-names(col.lifestyle) <- levels(act.sp$lifestyle)
-col.life <- scale_colour_manual(name="lifestyle", values = col.lifestyle)
-
-col.ecomorph.life <- scales::alpha(c("darkblue", "yellow", "darkgreen", "lightgreen", "lightblue", "darkred", "red"), 0.75)
-names(col.ecomorph.life) <- levels(act.sp$ecomorph.life)
-col.ecolife <- scale_colour_manual(name="ecomorph.life", values = col.ecomorph.life)
-
-#loading ggplot2 talk theme (transparent bkg with grey/white)
-source("R/Talk_theme_ggplot.R")
-source("R/Paper_theme_ggplot.R")
 
 #load tree
 tree <- read.nexus("Data/trees/10cal.tree250.nex")
@@ -105,6 +76,157 @@ act.sp.mean <- filter(act.sp.mean, !is.na(mcp.km)) #Just to clean up the datafra
 act.sp.mean <- filter(act.sp.mean, !is.na(body.mass))
 ```
 
+##Model Comparison with GLMM
+
+This will be a first run of model comparison that does not account for phylogeny directly, but can taxonomy can be accounted for.
+
+```{r}
+AS.model <- glm(log10(mcp.km)~log10(body.mass.kg)*subclass + Trophic.group, data = act.sp)
+summary(AS.model)
+
+#with phylogenetic correction
+dat.phy <- treeplyr::make.treedata(tree, act.sp.mean, name_column = "G.species")
+
+mean.tree <- dat.phy$phy
+mean.dat <- dat.phy$dat
+
+library(nlme)
+
+AS.mean.phy <- gls(log10(mcp.km)~log10(body.mass) + lifestyle + Trophic.group + subclass, data = act.sp.mean, correlation = corPagel(1,mean.tree), method = "ML")
+```
+
+
+## Model Comparison with brms
+
+```{r}
+library(brms)
+
+#To examine the full Activity Space dataset we will need to perform a repeated measures pGLMM model using brms on our suite of candidate models including: body mass, lifestyle, habitat type, and trophic guild. 
+
+#create the covariance matrix for adding to the phylogenetic mixed model
+A <- ape::vcv.phylo(tree)
+
+#create a list or priors to apply across all models. These are uninformative.
+priors.AS <- c(prior(normal(0, 10), "b"),
+    prior(normal(0, 50), "Intercept"),
+    prior(student_t(3, 0, 20), "sd"),
+    prior(student_t(3, 0, 20), "sigma"))
+
+#Model A: a simple model looking at activity space over body mass
+actsp_A <- brm(
+  log10(mcp.km) ~ log10(body.mass.kg) + (1|G.species), data = act.sp, 
+  family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
+  control = list(adapt_delta = 0.99),#the adapt_delta is set close to 1 (bound from 0.8-1) to reduce the divergences
+  prior = priors.AS,
+  save_all_pars = TRUE)
+actsp_A <- add_ic(actsp_A, ic=c("waic", "R2", "marglik")) #add IC to model fit for comparison
+saveRDS(actsp_A, file="~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_A_190713.rds")
+#actsp_A <- readRDS("Model Outputs/actsp_A_190713.rds")
+
+#Model B1: activity space over body mass with lifestyle as a cactor
+actsp_B1 <- brm(
+  log10(mcp.km) ~ log10(body.mass.kg) + lifestyle + (1|G.species), data = act.sp, 
+  family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
+  control = list(adapt_delta = 0.99),#the adapt_delta is set close to 1 (bound from 0.8-1) to reduce the divergences
+  prior = priors.AS,
+  save_all_pars = TRUE)
+actsp_B1 <- add_ic(actsp_B1, ic=c("waic", "R2", "marglik")) #add IC to model fit for comparison
+saveRDS(actsp_B1, file="~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_B1_190713.rds")
+
+#Model B2: activity space over body mass with an interaction with lifestyle
+actsp_B2 <- brm(
+  log10(mcp.km) ~ log10(body.mass.kg)*lifestyle + (1|G.species), data = act.sp, 
+  family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
+  control = list(adapt_delta = 0.99),#the adapt_delta is set close to 1 (bound from 0.8-1) to reduce the divergences
+  prior = priors.AS,
+  save_all_pars = TRUE)
+actsp_B2 <- add_ic(actsp_B2, ic=c("waic", "R2", "marglik")) #add IC to model fit for comparison
+saveRDS(actsp_B2, file="~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_B2_190713.rds")
+
+#Model C1: activity space over body mass with habitat as a cofactor
+actsp_C1 <- brm(
+  log10(mcp.km) ~ log10(body.mass.kg) + habitat2 + (1|G.species), data = act.sp, 
+  family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
+  control = list(adapt_delta = 0.99),#the adapt_delta is set close to 1 (bound from 0.8-1) to reduce the divergences
+  prior = priors.AS,
+  save_all_pars = TRUE)
+actsp_C1 <- add_ic(actsp_C1, ic=c("waic", "R2", "marglik")) #add IC to model fit for comparison
+saveRDS(actsp_C1, file="~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_C1_190713.rds")
+
+#Model C2: activity space over body mass with an interaction with habitat
+actsp_C2 <- brm(
+  log10(mcp.km) ~ log10(body.mass.kg)*habitat2 + (1|G.species), data = act.sp, 
+  family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
+  control = list(adapt_delta = 0.99),#the adapt_delta is set close to 1 (bound from 0.8-1) to reduce the divergences
+  prior = priors.AS,
+  save_all_pars = TRUE)
+actsp_C2 <- add_ic(actsp_C2, ic=c("waic", "R2", "marglik")) #add IC to model fit for comparison
+saveRDS(actsp_C2, file="~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_C2_190713.rds")
+
+#Model D1: Body mass with Trophic Guild as a cofactor
+actsp_D1 <- brm(
+  log10(mcp.km) ~ log10(body.mass.kg) + Trophic.group + (1|G.species), data = act.sp, 
+  family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
+  control = list(adapt_delta = 0.99),#the adapt_delta is set close to 1 (bound from 0.8-1) to reduce the divergences
+  prior = priors.AS,
+  save_all_pars = TRUE)
+actsp_D1 <- add_ic(actsp_D1, ic=c("waic", "R2", "marglik")) #add IC to model fit for comparison
+saveRDS(actsp_D1, file="~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_D1_190713.rds")
+
+#Model D2: Activity space over body mass with 
+actsp_D2 <- brm(
+  log10(mcp.km) ~ log10(body.mass.kg)*Trophic.group + (1|G.species), data = act.sp, 
+  family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
+  control = list(adapt_delta = 0.99),#the adapt_delta is set close to 1 (bound from 0.8-1) to reduce the divergences
+  prior = priors.AS,
+  save_all_pars = TRUE)
+actsp_D2 <- add_ic(actsp_D2, ic=c("waic", "R2", "marglik")) #add IC to model fit for comparison
+saveRDS(actsp_D2, file="~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_D2_190713.rds")
+
+#Compare model WAIC values to assess model support
+loo(actsp_A, actsp_B1, actsp_B2, actsp_C1, actsp_C2, actsp_D1, actsp_D2, "waic")
+
+```
+
+Check out the summary and output of the simple bayesian model
+
+```{r}
+summary(actsp_simple)
+plot(actsp_simple, N = 2, ask = FALSE)
+plot(marginal_effects(actsp_simple), points = TRUE) 
+```
+
+##Plotting
+```{r setting plotting parameters and colors, echo=FALSE}
+#Setting Colour scales and themes for plotting
+col.subclass <- scales::alpha(c("red", "green", "blue"), 0.5)
+names(col.subclass) <- levels(act.sp$subclass)
+col.tax <- scale_colour_manual(name = "subclass", values = col.subclass)
+
+col.hab <- scales::alpha(c("red", "blue"), 0.5)
+names(col.hab) <- levels(act.sp$Habitat)
+col.habitat <- scale_colour_manual(name = "Habitat", values = col.hab)
+
+col.hab.new <- scales::alpha(c("red", "yellow", "blue", "green"), 0.5)
+names(col.hab.new) <- levels(act.sp$habitat)
+col.habitat.new <- scale_colour_manual(name = "habitat.new", values = col.hab.new)
+
+col.trophic <- scales::alpha(c("blue", "royalblue", "skyblue", "navy"), 0.5)
+names(col.trophic) <- levels(act.sp$Trophic.group)
+col.feed <- scale_colour_manual(name= "Trophic.group", values = col.trophic)
+
+col.lifestyle <- scales::alpha(c("red","blue"), 0.5)
+names(col.lifestyle) <- levels(act.sp$lifestyle)
+col.life <- scale_colour_manual(name="lifestyle", values = col.lifestyle)
+
+col.ecomorph.life <- scales::alpha(c("darkblue", "yellow", "darkgreen", "lightgreen", "lightblue", "darkred", "red"), 0.75)
+names(col.ecomorph.life) <- levels(act.sp$ecomorph.life)
+col.ecolife <- scale_colour_manual(name="ecomorph.life", values = col.ecomorph.life)
+
+#loading ggplot2 talk theme (transparent bkg with grey/white)
+source("R/Talk_theme_ggplot.R")
+source("R/Paper_theme_ggplot.R")
+```
 
 ###Exploratory Plots
 First will be data summaries. Look at the size distribution within each species. 
@@ -325,63 +447,3 @@ AS.Melanopterus
 dev.off()
 
 ```
-
-
-```{r}
-AS.mean.model <- glm(log10(mcp.km)~log10(body.mass) + lifestyle + Trophic.group + subclass, data = act.sp.mean)
-summary(AS.mean.model)
-
-#with phylogenetic correction
-dat.phy <- treeplyr::make.treedata(tree, act.sp.mean, name_column = "G.species")
-
-mean.tree <- dat.phy$phy
-mean.dat <- dat.phy$dat
-
-library(nlme)
-
-AS.mean.phy <- gls(log10(mcp.km)~log10(body.mass) + lifestyle + Trophic.group + subclass, data = act.sp.mean, correlation = corPagel(1,mean.tree), method = "ML")
-```
-
-
-## Testing analzying with the brms package
-
-```{r}
-library(brms)
-
-#To examine the full Activity Space dataset we will need to perform a repeated measures pGLMM model. 
-
-#Match up the mean activity space dataset and the phylogeny
-dat.phy <- treeplyr::make.treedata(tree, act.sp.mean, name_column = "G.species")
-
-mean.tree <- dat.phy$phy
-mean.dat <- dat.phy$dat
-
-#create the covariance matrix for adding to the phylogenetic mixed model
-inv.phylo <- MCMCglmm::inverseA(mean.tree, nodes = "TIPS", scale = TRUE)
-A <- solve(inv.phylo$Ainv)
-rownames(A) <- rownames(inv.phylo$Ainv)
-
-A <- ape::vcv.phylo(mean.tree)
-
-#run a simple model looking at body mass over scaling
-actsp_trophic <- brm(
-  log10(body.mass) ~ log10(mcp.km) + Trophic.group + (1|species.id), data = mean.dat, 
-  family = gaussian(), cov_ranef = list(phylo = A), iter = 100000,
-  prior = c(
-    prior(normal(0, 10), "b"),
-    prior(normal(0, 50), "Intercept"),
-    prior(student_t(3, 0, 20), "sd"),
-    prior(student_t(3, 0, 20), "sigma")
-  )
-)
-
-```
-
-Check out the summary and output of the simple bayesian model
-
-```{r}
-summary(actsp_simple)
-plot(actsp_simple, N = 2, ask = FALSE)
-plot(marginal_effects(actsp_simple), points = TRUE) 
-```
-
