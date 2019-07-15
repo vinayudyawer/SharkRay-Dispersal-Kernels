@@ -208,6 +208,7 @@ priors.AS <- c(prior(normal(0, 10), "b"),
     prior(student_t(3, 0, 20), "sigma"))
 
 #Model A: a simple model looking at activity space over body mass
+###NOTE running these on bbk50 was throwing an error with initializing the model, trouble shooting suggested because the dependent variable when logged went to negative infinity (log10(0)), so I created a dataset called act.sp.no where all bbk50 less than 1 were filtered out. Will need to check this...
 actsp_bbk50_A <- brm(
   log10(bbk50.km) ~ log10(body.mass.kg) + (1|G.species), data = act.sp.no, 
   family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
@@ -305,78 +306,78 @@ priors.AS <- c(prior(normal(0, 10), "b"),
 
 #Model A: a simple model looking at activity space over body mass
 actsp_bbk95_A <- brm(
-  log10(bbk95.km) ~ log10(body.mass.kg) + (1|G.species), data = act.sp.no, 
+  log10(bbk95.km) ~ log10(body.mass.kg) + (1|G.species), data = act.sp, 
   family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
   control = list(adapt_delta = 0.99),#the adapt_delta is set close to 1 (bound from 0.8-1) to reduce the divergences
   prior = priors.AS,
   save_all_pars = TRUE)
-actsp_bbk95_A <- add_ic(actsp_bbk95_A, ic=c("waic", "R2", "marglik")) #add IC to model fit for comparison
+actsp_bbk95_A <- add_criterion(actsp_bbk95_A, criterion=c("loo","waic", "R2", "marglik"), reloo=TRUE) #add IC to model fit for comparison
 saveRDS(actsp_bbk95_A, file="R/Model Outputs/bbk95/actsp_bbk95_A_190714.rds")
 #actsp_bbk95_A <- readRDS("Model Outputs/actsp_bbk95_A_190713.rds")
 
 #Model B1: activity space over body mass with lifestyle as a cactor
 actsp_bbk95_B1 <- brm(
-  log10(bbk95.km) ~ log10(body.mass.kg) + lifestyle + (1|G.species), data = act.sp.no, 
+  log10(bbk95.km) ~ log10(body.mass.kg) + lifestyle + (1|G.species), data = act.sp, 
   family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
   control = list(adapt_delta = 0.99),#the adapt_delta is set close to 1 (bound from 0.8-1) to reduce the divergences
   prior = priors.AS,
   save_all_pars = TRUE)
-actsp_bbk95_B1 <- add_ic(actsp_bbk95_B1, ic=c("waic", "R2", "marglik")) #add IC to model fit for comparison
+actsp_bbk95_B1 <- add_criterion(actsp_bbk95_B1, criterion=c("loo","waic", "R2", "marglik"), reloo=TRUE) #add IC to model fit for comparison
 saveRDS(actsp_bbk95_B1, file="R/Model Outputs/bbk95/actsp_bbk95_B1_190714.rds")
 #actsp_bbk95_B1 <- readRDS("~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_bbk95_B1_190713.rds")
 
 #Model B2: activity space over body mass with an interaction with lifestyle
 actsp_bbk95_B2 <- brm(
-  log10(bbk95.km) ~ log10(body.mass.kg)*lifestyle + (1|G.species), data = act.sp.no, 
+  log10(bbk95.km) ~ log10(body.mass.kg)*lifestyle + (1|G.species), data = act.sp, 
   family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
   control = list(adapt_delta = 0.99),#the adapt_delta is set close to 1 (bound from 0.8-1) to reduce the divergences
   prior = priors.AS,
   save_all_pars = TRUE)
-actsp_bbk95_B2 <- add_ic(actsp_bbk95_B2, ic=c("waic", "R2", "marglik")) #add IC to model fit for comparison
+actsp_bbk95_B2 <- add_criterion(actsp_bbk95_B2, criterion=c("loo","waic", "R2", "marglik"), reloo=TRUE) #add IC to model fit for comparison
 saveRDS(actsp_bbk95_B2, file="R/Model Outputs/bbk95/actsp_bbk95_B2_190714.rds")
 #actsp_bbk95_B2 <- readRDS("~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_bbk95_B2_190713.rds")
 
 #Model C1: activity space over body mass with habitat as a cofactor
 actsp_bbk95_C1 <- brm(
-  log10(bbk95.km) ~ log10(body.mass.kg) + habitat2 + (1|G.species), data = act.sp.no, 
+  log10(bbk95.km) ~ log10(body.mass.kg) + habitat2 + (1|G.species), data = act.sp, 
   family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
   control = list(adapt_delta = 0.99),#the adapt_delta is set close to 1 (bound from 0.8-1) to reduce the divergences
   prior = priors.AS,
   save_all_pars = TRUE)
-actsp_bbk95_C1 <- add_ic(actsp_bbk95_C1, ic=c("waic", "R2", "marglik")) #add IC to model fit for comparison
+actsp_bbk95_C1 <- add_criterion(actsp_bbk95_C1, criterion=c("loo","waic", "R2", "marglik"), reloo=TRUE) #add IC to model fit for comparison
 saveRDS(actsp_bbk95_C1, file="R/Model Outputs/bbk95/actsp_bbk95_C1_190714.rds")
 #actsp_bbk95_C1 <- readRDS("~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_bbk95_C1_190713.rds")
 
 #Model C2: activity space over body mass with an interaction with habitat
 actsp_bbk95_C2 <- brm(
-  log10(bbk95.km) ~ log10(body.mass.kg)*habitat2 + (1|G.species), data = act.sp.no, 
+  log10(bbk95.km) ~ log10(body.mass.kg)*habitat2 + (1|G.species), data = act.sp, 
   family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
   control = list(adapt_delta = 0.99),#the adapt_delta is set close to 1 (bound from 0.8-1) to reduce the divergences
   prior = priors.AS,
   save_all_pars = TRUE)
-actsp_bbk95_C2 <- add_ic(actsp_bbk95_C2, ic=c("waic", "R2", "marglik")) #add IC to model fit for comparison
+actsp_bbk95_C2 <- add_criterion(actsp_bbk95_C2, criterion=c("loo","waic", "R2", "marglik"), reloo=TRUE) #add IC to model fit for comparison
 saveRDS(actsp_bbk95_C2, file="R/Model Outputs/bbk95/actsp_bbk95_C2_190714.rds")
 #actsp_bbk95_C2 <- readRDS("~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_bbk95_C2_190713.rds")
 
 #Model D1: Body mass with Trophic Guild as a cofactor
 actsp_bbk95_D1 <- brm(
-  log10(bbk95.km) ~ log10(body.mass.kg) + Trophic.group + (1|G.species), data = act.sp.no, 
+  log10(bbk95.km) ~ log10(body.mass.kg) + Trophic.group + (1|G.species), data = act.sp, 
   family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
   control = list(adapt_delta = 0.99),#the adapt_delta is set close to 1 (bound from 0.8-1) to reduce the divergences
   prior = priors.AS,
   save_all_pars = TRUE)
-actsp_bbk95_D1 <- add_ic(actsp_bbk95_D1, ic=c("waic", "R2", "marglik")) #add IC to model fit for comparison
+actsp_bbk95_D1 <- add_criterion(actsp_bbk95_D1, criterion=c("loo","waic", "R2", "marglik"), reloo=TRUE) #add IC to model fit for comparison
 saveRDS(actsp_bbk95_D1, file="R/Model Outputs/bbk95/actsp_bbk95_D1_190714.rds")
 #actsp_bbk95_D1 <- readRDS("~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_bbk95_D1_190713.rds")
 
 #Model D2: Activity space over body mass with 
 actsp_bbk95_D2 <- brm(
-  log10(bbk95.km) ~ log10(body.mass.kg)*Trophic.group + (1|G.species), data = act.sp.no, 
+  log10(bbk95.km) ~ log10(body.mass.kg)*Trophic.group + (1|G.species), data = act.sp, 
   family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
   control = list(adapt_delta = 0.99),#the adapt_delta is set close to 1 (bound from 0.8-1) to reduce the divergences
   prior = priors.AS,
   save_all_pars = TRUE)
-actsp_bbk95_D2 <- add_ic(actsp_bbk95_D2, ic=c("waic", "R2", "marglik")) #add IC to model fit for comparison
+actsp_bbk95_D2 <- add_criterion(actsp_bbk95_D2, criterion=c("loo","waic", "R2", "marglik"), reloo=TRUE) #add IC to model fit for comparison
 saveRDS(actsp_bbk95_D2, file="R/Model Outputs/bbk95/actsp_bbk95_D2_190714.rds")
 #actsp_bbk95_D2 <- readRDS("~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_bbk95_D2_190713.rds")
 
