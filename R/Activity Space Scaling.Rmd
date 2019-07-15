@@ -209,7 +209,7 @@ priors.AS <- c(prior(normal(0, 10), "b"),
 
 #Model A: a simple model looking at activity space over body mass
 actsp_bbk50_A <- brm(
-  log10(bbk50.km) ~ log10(body.mass.kg) + (1|G.species), data = act.sp, 
+  log10(bbk50.km) ~ log10(body.mass.kg) + (1|G.species), data = act.sp.no, 
   family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
   control = list(adapt_delta = 0.99),#the adapt_delta is set close to 1 (bound from 0.8-1) to reduce the divergences
   prior = priors.AS,
@@ -220,7 +220,7 @@ saveRDS(actsp_bbk50_A, file="R/Model Outputs/bbk50/actsp_bbk50_A_190714.rds")
 
 #Model B1: activity space over body mass with lifestyle as a cactor
 actsp_bbk50_B1 <- brm(
-  log10(bbk50.km) ~ log10(body.mass.kg) + lifestyle + (1|G.species), data = act.sp, 
+  log10(bbk50.km) ~ log10(body.mass.kg) + lifestyle + (1|G.species), data = act.sp.no, 
   family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
   control = list(adapt_delta = 0.99),#the adapt_delta is set close to 1 (bound from 0.8-1) to reduce the divergences
   prior = priors.AS,
@@ -231,7 +231,7 @@ saveRDS(actsp_bbk50_B1, file="R/Model Outputs/bbk50/actsp_bbk50_B1_190714.rds")
 
 #Model B2: activity space over body mass with an interaction with lifestyle
 actsp_bbk50_B2 <- brm(
-  log10(bbk50.km) ~ log10(body.mass.kg)*lifestyle + (1|G.species), data = act.sp, 
+  log10(bbk50.km) ~ log10(body.mass.kg)*lifestyle + (1|G.species), data = act.sp.no, 
   family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
   control = list(adapt_delta = 0.99),#the adapt_delta is set close to 1 (bound from 0.8-1) to reduce the divergences
   prior = priors.AS,
@@ -242,7 +242,7 @@ saveRDS(actsp_bbk50_B2, file="R/Model Outputs/bbk50/actsp_bbk50_B2_190714.rds")
 
 #Model C1: activity space over body mass with habitat as a cofactor
 actsp_bbk50_C1 <- brm(
-  log10(bbk50.km) ~ log10(body.mass.kg) + habitat2 + (1|G.species), data = act.sp, 
+  log10(bbk50.km) ~ log10(body.mass.kg) + habitat2 + (1|G.species), data = act.sp.no, 
   family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
   control = list(adapt_delta = 0.99),#the adapt_delta is set close to 1 (bound from 0.8-1) to reduce the divergences
   prior = priors.AS,
@@ -253,7 +253,7 @@ saveRDS(actsp_bbk50_C1, file="R/Model Outputs/bbk50/actsp_bbk50_C1_190714.rds")
 
 #Model C2: activity space over body mass with an interaction with habitat
 actsp_bbk50_C2 <- brm(
-  log10(bbk50.km) ~ log10(body.mass.kg)*habitat2 + (1|G.species), data = act.sp, 
+  log10(bbk50.km) ~ log10(body.mass.kg)*habitat2 + (1|G.species), data = act.sp.no, 
   family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
   control = list(adapt_delta = 0.99),#the adapt_delta is set close to 1 (bound from 0.8-1) to reduce the divergences
   prior = priors.AS,
@@ -264,7 +264,7 @@ saveRDS(actsp_bbk50_C2, file="R/Model Outputs/bbk50/actsp_bbk50_C2_190714.rds")
 
 #Model D1: Body mass with Trophic Guild as a cofactor
 actsp_bbk50_D1 <- brm(
-  log10(bbk50.km) ~ log10(body.mass.kg) + Trophic.group + (1|G.species), data = act.sp, 
+  log10(bbk50.km) ~ log10(body.mass.kg) + Trophic.group + (1|G.species), data = act.sp.no, 
   family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
   control = list(adapt_delta = 0.99),#the adapt_delta is set close to 1 (bound from 0.8-1) to reduce the divergences
   prior = priors.AS,
@@ -275,7 +275,7 @@ saveRDS(actsp_bbk50_D1, file="R/Model Outputs/bbk50/actsp_bbk50_D1_190714.rds")
 
 #Model D2: Activity space over body mass with 
 actsp_bbk50_D2 <- brm(
-  log10(bbk50.km) ~ log10(body.mass.kg)*Trophic.group + (1|G.species), data = act.sp, 
+  log10(bbk50.km) ~ log10(body.mass.kg)*Trophic.group + (1|G.species), data = act.sp.no, 
   family = gaussian(), cov_ranef = list(phylo = A), iter = 10000,
   control = list(adapt_delta = 0.99),#the adapt_delta is set close to 1 (bound from 0.8-1) to reduce the divergences
   prior = priors.AS,
@@ -287,6 +287,7 @@ saveRDS(actsp_bbk50_D2, file="R/Model Outputs/bbk50/actsp_bbk50_D2_190714.rds")
 #Compare model WAIC values to assess model support
 loo.bbk <- loo(actsp_bbk50_A, actsp_bbk50_B1, actsp_bbk50_B2, actsp_bbk50_C1, actsp_bbk50_C2, actsp_bbk50_D1, actsp_bbk50_D2, "waic")
 loo.bbk
+saveRDS(loo.bbk, file="R/Model Outputs/bbk50/loo.bbk_190714.rds")
 ```
 
 Check out the summary and output
