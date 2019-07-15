@@ -121,7 +121,7 @@ actsp_A <- brm(
   save_all_pars = TRUE)
 actsp_A <- add_ic(actsp_A, ic=c("waic", "R2", "marglik")) #add IC to model fit for comparison
 saveRDS(actsp_A, file="~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_A_190713.rds")
-#actsp_A <- readRDS("Model Outputs/actsp_A_190713.rds")
+actsp_A <- readRDS("~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_A_190713.rds")
 
 #Model B1: activity space over body mass with lifestyle as a cactor
 actsp_B1 <- brm(
@@ -132,6 +132,7 @@ actsp_B1 <- brm(
   save_all_pars = TRUE)
 actsp_B1 <- add_ic(actsp_B1, ic=c("waic", "R2", "marglik")) #add IC to model fit for comparison
 saveRDS(actsp_B1, file="~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_B1_190713.rds")
+actsp_B1 <- readRDS("~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_B1_190713.rds")
 
 #Model B2: activity space over body mass with an interaction with lifestyle
 actsp_B2 <- brm(
@@ -142,6 +143,7 @@ actsp_B2 <- brm(
   save_all_pars = TRUE)
 actsp_B2 <- add_ic(actsp_B2, ic=c("waic", "R2", "marglik")) #add IC to model fit for comparison
 saveRDS(actsp_B2, file="~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_B2_190713.rds")
+actsp_B2 <- readRDS("~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_B2_190713.rds")
 
 #Model C1: activity space over body mass with habitat as a cofactor
 actsp_C1 <- brm(
@@ -152,6 +154,7 @@ actsp_C1 <- brm(
   save_all_pars = TRUE)
 actsp_C1 <- add_ic(actsp_C1, ic=c("waic", "R2", "marglik")) #add IC to model fit for comparison
 saveRDS(actsp_C1, file="~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_C1_190713.rds")
+actsp_C1 <- readRDS("~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_C1_190713.rds")
 
 #Model C2: activity space over body mass with an interaction with habitat
 actsp_C2 <- brm(
@@ -162,6 +165,7 @@ actsp_C2 <- brm(
   save_all_pars = TRUE)
 actsp_C2 <- add_ic(actsp_C2, ic=c("waic", "R2", "marglik")) #add IC to model fit for comparison
 saveRDS(actsp_C2, file="~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_C2_190713.rds")
+actsp_C2 <- readRDS("~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_C2_190713.rds")
 
 #Model D1: Body mass with Trophic Guild as a cofactor
 actsp_D1 <- brm(
@@ -172,6 +176,7 @@ actsp_D1 <- brm(
   save_all_pars = TRUE)
 actsp_D1 <- add_ic(actsp_D1, ic=c("waic", "R2", "marglik")) #add IC to model fit for comparison
 saveRDS(actsp_D1, file="~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_D1_190713.rds")
+actsp_D1 <- readRDS("~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_D1_190713.rds")
 
 #Model D2: Activity space over body mass with 
 actsp_D2 <- brm(
@@ -182,18 +187,31 @@ actsp_D2 <- brm(
   save_all_pars = TRUE)
 actsp_D2 <- add_ic(actsp_D2, ic=c("waic", "R2", "marglik")) #add IC to model fit for comparison
 saveRDS(actsp_D2, file="~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_D2_190713.rds")
+actsp_D2 <- readRDS("~/Dropbox/Work/Postdoc SFU/Data and Analysis/R/R/Model Outputs/actsp_D2_190713.rds")
 
 #Compare model WAIC values to assess model support
-loo(actsp_A, actsp_B1, actsp_B2, actsp_C1, actsp_C2, actsp_D1, actsp_D2, "waic")
-
+loo(actsp_A, actsp_B1, actsp_B2, actsp_C1, actsp_C2, actsp_D1, actsp_D2, pointwise = TRUE)
 ```
 
-Check out the summary and output of the simple bayesian model
+Check out the summary and output
 
-```{r}
-summary(actsp_simple)
-plot(actsp_simple, N = 2, ask = FALSE)
-plot(marginal_effects(actsp_simple), points = TRUE) 
+```{r summaries, echo=FALSE}
+summary(actsp_A)
+summary(actsp_B1)
+summary(actsp_B2)
+summary(actsp_C1)
+summary(actsp_C2)
+summary(actsp_D1)
+summar(actsp_D2)
+
+actsp_A$waic
+actsp_B1$waic
+actsp_B2$waic
+actsp_C1$waic
+actsp_C2$waic
+actsp_D1$waic
+actsp_D2$waic
+
 ```
 
 ##Plotting
